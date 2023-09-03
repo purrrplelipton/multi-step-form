@@ -60,106 +60,206 @@
   <body>
     <main>
       <nav class="navbar">
-        <button class="current" type="button">
-          <span class="step">1</span>
-          <div>
-            <span class="heading">STEP&nbsp;1</span>
-            <span class="step__title">Your info</span>
+        <label class="step" for="step-1">
+          <input
+            type="radio"
+            name="step-picker"
+            id="step-1"
+            value="step 1"
+            checked
+          />
+          <span class="step__label">1</span>
+          <div class="step__description">
+            <span class="step__description__heading">STEP&nbsp;1</span>
+            <span class="step__description__title">Your info</span>
           </div>
-        </button>
-        <button type="button">
-          <span class="step">2</span>
-          <div>
-            <span class="heading">STEP&nbsp;2</span>
-            <span class="step__title">Select plan</span>
+        </label>
+        <label class="step" for="step-2">
+          <input type="radio" name="step-picker" id="step-2" value="step 2" />
+          <span class="step__label">2</span>
+          <div class="step__description">
+            <span class="step__description__heading">STEP&nbsp;2</span>
+            <span class="step__description__title">Select plan</span>
           </div>
-        </button>
-        <button type="button">
-          <span class="step">3</span>
-          <div>
-            <span class="heading">STEP&nbsp;3</span>
-            <span class="step__title">Add-ons</span>
+        </label>
+        <label class="step" for="step-3">
+          <input type="radio" name="step-picker" id="step-3" value="step 3" />
+          <span class="step__label">3</span>
+          <div class="step__description">
+            <span class="step__description__heading">STEP&nbsp;3</span>
+            <span class="step__description__title">Add-ons</span>
           </div>
-        </button>
-        <button type="button">
-          <span class="step">4</span>
-          <div>
-            <span class="heading">STEP&nbsp;4</span>
-            <span class="step__title">Summary</span>
+        </label>
+        <label class="step" for="step-4">
+          <input type="radio" name="step-picker" id="step-4" value="step 4" />
+          <span class="step__label">4</span>
+          <div class="step__description">
+            <span class="step__description__heading">STEP&nbsp;4</span>
+            <span class="step__description__title">Summary</span>
           </div>
-        </button>
+        </label>
       </nav>
-      <section class="step-1">
-        <header>
-          <h1>Personal info</h1>
-          <p>Please provide your name, email address, and phone number.</p>
-        </header>
-        <form action="POST">
-          <div>
-            <label for="name">Name </label>
+      <section class="wrapper">
+        <div class="step-1">
+          <header class="step-1__header">
+            <h1 class="step-title">Personal info</h1>
+            <p class="step-desc">
+              Please provide your name, email address, and phone number.
+            </p>
+          </header>
+          <label for="name">
+            <span class="label">Name</span>
+            <input type="text" id="name" placeholder="Emmanuel Adeyeye" />
+          </label>
+          <label for="email">
+            <span class="label">Email&nbsp;Address</span>
             <input
               type="text"
-              autocomplete="off"
-              id="name"
-              placeholder="e.g. Stephen King"
-            />
-          </div>
-          <div>
-            <label for="email">Email Address</label>
-            <input
-              type="text"
-              autocomplete="off"
               id="email"
-              placeholder="e.g. stephenking@lorem.com"
+              placeholder="immanueltoby@gmail.com"
             />
-          </div>
-          <div>
-            <label for="phone-number">Phone Number</label>
-            <input
-              type="text"
-              autocomplete="off"
-              id="phone-number"
-              placeholder="e.g. +1 234 567 890"
-            />
-          </div>
-          <button type="submit">Next Step</button>
-        </form>
+          </label>
+          <label for="phone-number">
+            <span class="label">Phone&nbsp;Number</span>
+            <input type="text" id="phone-number" placeholder="0808 782 3890" />
+          </label>
+        </div>
+        <div class="footer">
+          <input type="button" value="go back" />
+          <input type="button" value="next step" />
+        </div>
       </section>
-      <div hidden>
-        <!-- Step 2 start -->
-
-        Select your plan You have the option of monthly or yearly billing.
-        Arcade $9/mo Advanced $12/mo Pro $15/mo Monthly Yearly Go Back Next Step
-
-        <!-- Step 2 end -->
-
-        <!-- Step 3 start -->
-
-        Pick add-ons Add-ons help enhance your gaming experience. Online service
-        Access to multiplayer games +$1/mo Larger storage Extra 1TB of cloud
-        save +$2/mo Customizable Profile Custom theme on your profile +$2/mo Go
-        Back Next Step
-
-        <!-- Step 3 end -->
-
-        <!-- Step 4 start -->
-
-        Finishing up Double-check everything looks OK before confirming.
-
-        <!-- Dynamically add subscription and add-on selections here -->
-
-        Total (per month/year) Go Back Confirm
-
-        <!-- Step 4 end -->
-
-        <!-- Step 5 start -->
-
-        Thank you! Thanks for confirming your subscription! We hope you have fun
-        using our platform. If you ever need support, please feel free to email
-        us at support@loremgaming.com.
-
-        <!-- Step 5 end -->
-      </div>
     </main>
+    <div hidden>
+      <section class="step-2">
+        <header class="step-2__header">
+          <h1 class="step-2__header__title">Select your plan</h1>
+          <p class="step-2__header__description">
+            You have the option of monthly or yearly billing.
+          </p>
+        </header>
+        <div>
+          <label class="subscription-option" for="arcade">
+            <input type="radio" name="subscription-option" id="arcade" />
+            <img src="./assets/images/icon-arcade.svg" alt="Arcade Icon" />
+            <div>
+              <h3>Arcade</h3>
+              <p>&dollar;9/mo</p>
+            </div>
+          </label>
+          <label class="subscription-option" for="advanced">
+            <input type="radio" name="subscription-option" id="advanced" />
+            <img src="./assets/images/icon-advanced.svg" alt="Advanced Icon" />
+            <div>
+              <h3>Advanced</h3>
+              <p>&dollar;12/mo</p>
+            </div>
+          </label>
+          <label class="subscription-option" for="pro">
+            <input type="radio" name="subscription-option" id="pro" />
+            <img src="./assets/images/icon-pro.svg" alt="Pro Icon" />
+            <div>
+              <h3>Pro</h3>
+              <p>&dollar;15/mo</p>
+            </div>
+          </label>
+        </div>
+        <div class="subscription-mode">
+          <h4>Monthly</h4>
+          <span class="switch">
+            <input
+              type="checkbox"
+              name="subscription-mode"
+              id="subscription-mode"
+            />
+          </span>
+          <h4>Yearly</h4>
+        </div>
+      </section>
+      <section class="step-3">
+        <header class="step-3__header">
+          <h1>Pick add-ons</h1>
+          <p>Add-ons help enhance your gaming experience.</p>
+        </header>
+        <div>
+          <label for="online-service">
+            <input type="checkbox" name="online-service" id="online-service" />
+            <span class="checkbox"></span>
+            <div class="add-on__description">
+              <h2>Online service</h2>
+              <p>Access to multiplayer games</p>
+            </div>
+            <span class="add-on__price">&dollar;1/mo</span>
+          </label>
+          <label for="larger-storage">
+            <input type="checkbox" name="larger-storage" id="larger-storage" />
+            <span class="checkbox"></span>
+            <div class="add-on__description">
+              <h2>Larger storage</h2>
+              <p>Extra 1TB of cloud save</p>
+            </div>
+            <span class="add-on__price">&dollar;2/mo</span>
+          </label>
+          <label for="customizable-profile">
+            <input
+              type="checkbox"
+              name="customizable-profile"
+              id="customizable-profile"
+            />
+            <span class="checkbox"></span>
+            <div class="add-on__description">
+              <h2>Customizable Profile</h2>
+              <p>Custom theme on your profile</p>
+            </div>
+            <span class="add-on__price">&dollar;2/mo</span>
+          </label>
+        </div>
+      </section>
+      <section class="step-4">
+        <header class="step-4__header">
+          <h1>Finishing up</h1>
+          <p>Double-check everything looks OK before confirming.</p>
+        </header>
+        <div>
+          <ul class="invoice">
+            <li class="default">
+              <div>
+                <p class="subscription-info">
+                  <span class="sub-mode">Arcade</span>
+                  (<span class="sub-interval">Monthly</span>)
+                </p>
+                <button type="button">Change</button>
+              </div>
+              <p class="subscription-price">&dollar;<span></span>/mo</p>
+            </li>
+            <hr />
+            <li class="add-ons">
+              <div hidden>
+                <p class="add-on__title"></p>
+                <p class="add-on__price">&plus;&dollar;<span></span>/mo</p>
+              </div>
+            </li>
+          </ul>
+          <div>
+            <p>Total&nbsp;(per&nbsp;<span class="interval">month</span>)</p>
+            <p>&plus;&dollar;<span>12</span>/mo</p>
+          </div>
+        </div>
+      </section>
+      <section class="step-5">
+        <header class="step-5__header">
+          <img src="./assets/images/icon-thank-you.svg" alt="Thank You Icon" />
+          <h1>Thank you!</h1>
+        </header>
+        <div>
+          <p>
+            Thanks for confirming your subscription! We hope you have fun using
+            our platform. If you ever need support, please feel free to email us
+            at support@loremgaming.com.
+          </p>
+        </div>
+      </section>
+    </div>
+    <script src="./script.js"></script>
   </body>
 </html>
