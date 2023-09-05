@@ -110,7 +110,7 @@ main {
   flex-flow: column nowrap;
 }
 
-.step-1 {
+[class^='page-'] {
   background-color: #fff;
   margin: 0 1.125em;
   padding: 1.25em;
@@ -118,22 +118,21 @@ main {
   box-shadow: 0 1em 1em #00000011;
 }
 
-.step-1__header .step-desc {
+.step-desc {
   color: var(--cool-gray);
   margin-bottom: 1.125em;
 }
 
-.step-1 label[for] {
-  display: block;
+[class^='page-'] .field-wrapper {
   font-size: 0.8em;
   margin-bottom: 0.7em;
 }
 
-.step-1 label[for]:not(:last-child) input[type] {
+[class^='page-'] .field-wrapper:not(:last-child) input {
   margin-bottom: 0.375em;
 }
 
-.step-1 label[for] input[type] {
+[class^='page-'] .field-wrapper input {
   color: inherit;
   display: inline-block;
   width: 100%;
@@ -147,23 +146,23 @@ main {
   padding: 0.75em 1.125em;
 }
 
-.step-1 label[for]:not(.error) input[type]:focus {
+[class^='page-'] .field-wrapper:not(.error) input:focus {
   border-color: var(--purplish-blue);
 }
 
-.step-1 label[for] input[type]::placeholder {
+[class^='page-'] .field-wrapper input::placeholder {
   color: var(--cool-gray);
 }
 
-.step-1 label[for].error {
+[class^='page-'] .field-wrapper.error {
   position: relative;
 }
 
-.step-1 label[for].error input[type] {
+[class^='page-'] .field-wrapper.error input {
   border-color: var(--strawberry-red);
 }
 
-.step-1 label[for].error::after {
+[class^='page-'] .field-wrapper.error::after {
   content: attr(data-message);
   position: absolute;
   top: 2px;
@@ -180,7 +179,8 @@ main {
   align-items: center;
   color: var(--cool-gray);
   background-color: #fff;
-  padding: 1.125em;
+  font-size: 0.9375em;
+  padding: 1.2em;
 }
 
 .footer input[type='button'] {
@@ -201,11 +201,6 @@ main {
   opacity: 0.5;
 }
 
-.footer input[value='go back'] {
-  display: none;
-  visibility: hidden;
-}
-
 .footer input[value='go back']:not(:disabled):active,
 .footer input[value='go back']:not(:disabled):hover {
   color: var(--marine-blue);
@@ -215,7 +210,6 @@ main {
   border-radius: 4px;
   display: inline-block;
   margin: 0 0 0 auto;
-  font-size: 0.9375em;
   padding: 0.75em 0.875em;
   color: #fff;
   background-color: var(--marine-blue);
@@ -227,24 +221,26 @@ main {
   }
 
   main {
-    background-image: none;
+    background: none;
     margin: auto;
     max-width: 1024px;
-    height: auto;
+    max-height: 600px;
     flex-flow: row nowrap;
     background-color: #fff;
     border-radius: 0.75em;
     padding: 0.75em;
+    box-shadow: 0 1em 1em #00000011;
   }
 
   .navbar {
-    background-image: url(./assets/images/bg-sidebar-desktop.svg);
+    background: var(--purplish-blue) url(./assets/images/bg-sidebar-desktop.svg)
+      no-repeat center bottom / cover;
     flex-flow: column nowrap;
     align-items: stretch;
     justify-content: flex-start;
     gap: 1.75em;
-    padding-block: 2.5em;
-    padding-inline: 2em 4em;
+    padding-block: 2.625em;
+    padding-inline: 2em 6em;
     border-radius: 0.625em;
   }
 
@@ -253,7 +249,11 @@ main {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    gap: 1em;
+    gap: 1.125em;
+  }
+
+  .step__label {
+    font-size: 0.9375em;
   }
 
   .step__description {
@@ -276,21 +276,52 @@ main {
   }
 
   .wrapper {
-    padding: 2.5em 5em 1em;
+    padding-inline: 6em;
   }
 
-  .step-1,
+  .step-title {
+    font-size: 2.0625em;
+  }
+
+  .step-desc {
+    margin-bottom: 1.375em;
+  }
+
+  [class^='page-'] .field-wrapper {
+    font-size: 1em;
+  }
+
+  [class^='page-'] .field-wrapper label {
+    font-size: 0.875em;
+    line-height: 2;
+  }
+
+  [class^='page-'] .field-wrapper input {
+    font-size: 1em;
+  }
+
+  [class^='page-'],
   .footer {
     border-radius: unset;
     background-color: unset;
+  }
+
+  [class^='page-'] {
     box-shadow: unset;
     margin: unset;
-    padding: unset;
+    padding: 2.75em 0 0;
+  }
+
+  .footer {
+    margin: auto 0 0;
+    font-size: 1em;
+    padding: 0.625em 0;
   }
 }
 
 *::before,
 *,
 *::after {
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
+  user-select: none;
 }
