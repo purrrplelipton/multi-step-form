@@ -2,11 +2,8 @@ const { log: l } = console;
 
 document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.querySelector('nav.navbar');
-  const radios = navbar.querySelectorAll('label[for].step [type="radio"]');
-  const step1 = radios[0],
-    step2 = radios[1],
-    step3 = radios[2],
-    step4 = radios[3];
+  const radio = navbar.querySelectorAll('label[for].step [type="radio"]');
+  const step = document.querySelectorAll('div[class^="page-"');
   const nameFieldWrapper = document.querySelector('.field-wrapper.name');
   const nameField = nameFieldWrapper.querySelector('input#name');
   const nameRegExp = new RegExp(/^[A-Za-z]{2,}(?:[-\s][A-Za-z]+)*$/);
@@ -31,27 +28,22 @@ document.addEventListener('DOMContentLoaded', function () {
     numberField.value.trim() &&
     phoneNumberRegExp.test(numberField.value);
 
-  step2.addEventListener('change', function () {
-    [
-      document.querySelector('div.page-2'),
-      document.querySelector('div.page-3'),
-      document.querySelector('div.page-4'),
-      document.querySelector('div.page-5'),
-    ].forEach((step) => (step.hidden = true));
+  radio[0].addEventListener('change', function () {
+    step.forEach((page) => (page.hidden = page === step[0] ? false : true));
     goBkBtn.hidden = true;
     goBkBtn.disabled = true;
-    document.querySelector('div.page-1').hidden = false;
   });
 
-  step2.addEventListener('change', function () {
+  radio[1].addEventListener('change', function () {
     if (!validateFields()) {
-      step1.checked = true;
-      return (step2.checked = false);
+      radio.forEach(
+        (step) => (step.checked = step === radio[0] ? true : false),
+      );
+      return;
     }
     goBkBtn.hidden = false;
     goBkBtn.disabled = false;
-    document.querySelector('div.page-1').hidden = true;
-    document.querySelector('div.page-2').hidden = false;
+    step.forEach((page) => (page.hidden = page === step[1] ? false : true));
   });
 
   nameField.addEventListener('input', function ({ target: { value } }) {
@@ -105,5 +97,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
   nextBtn.addEventListener('click', function (e) {
     if (!validateFields()) return e.preventDefault();
+  });
+
+  const subOption = document.querySelectorAll('.subscription-option');
+  // const arcade = subOption[0]?.querySelector('');
+  // const advanced = subOption[1]?.querySelector('');
+  // const pro = subOption[2]?.querySelector('');
+
+  subOption.forEach(function (option) {
+    const radio = option.querySelector('input[type="radio"]');
+    if (radio && radio.checked) return option.classList.add('selected');
+    option.classList.remove('selected');
+  });
+
+  const subIntervalWrapper = document.querySelector('.subscription-interval');
+  const monthlyToggle = subIntervalWrapper?.querySelector('#monthly-interval');
+  const intervalToggle = subIntervalWrapper?.querySelector('button.toggle');
+  const yearlyToggle = subIntervalWrapper?.querySelector('#yearly-interval');
+
+  intervalToggle.addEventListener('click', function ({ target }) {
+    target.classList.toggle('toggled');
+    if (target.classList.contains('toggled')) {
+      monthlyToggle.checked = false;
+      yearlyToggle.checked = true;
+      return;
+    }
+    monthlyToggle.checked = true;
+    yearlyToggle.checked = false;
   });
 });

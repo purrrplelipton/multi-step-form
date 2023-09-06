@@ -123,16 +123,16 @@ main {
   margin-bottom: 1.125em;
 }
 
-[class^='page-'] .field-wrapper {
+.field-wrapper {
   font-size: 0.8em;
   margin-bottom: 0.7em;
 }
 
-[class^='page-'] .field-wrapper:not(:last-child) input {
+.field-wrapper:not(:last-child) input {
   margin-bottom: 0.375em;
 }
 
-[class^='page-'] .field-wrapper input {
+.field-wrapper input {
   color: inherit;
   display: inline-block;
   width: 100%;
@@ -146,23 +146,23 @@ main {
   padding: 0.75em 1.125em;
 }
 
-[class^='page-'] .field-wrapper:not(.error) input:focus {
+.field-wrapper:not(.error) input:focus {
   border-color: var(--purplish-blue);
 }
 
-[class^='page-'] .field-wrapper input::placeholder {
+.field-wrapper input::placeholder {
   color: var(--cool-gray);
 }
 
-[class^='page-'] .field-wrapper.error {
+.field-wrapper.error {
   position: relative;
 }
 
-[class^='page-'] .field-wrapper.error input {
+.field-wrapper.error input {
   border-color: var(--strawberry-red);
 }
 
-[class^='page-'] .field-wrapper.error::after {
+.field-wrapper.error::after {
   content: attr(data-message);
   position: absolute;
   top: 2px;
@@ -170,6 +170,105 @@ main {
   color: var(--strawberry-red);
   font-weight: 700;
   line-height: 1.1;
+}
+
+.page-2 {
+  padding: 1.5em;
+}
+
+.page-2 header {
+  font-size: 1.125em;
+}
+
+.subscription-option {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+  padding: 1.125em;
+  position: relative;
+  isolation: isolate;
+  border: 1px solid #00000011;
+  border-radius: 0.75em;
+}
+
+.subscription-option:not(:last-child) {
+  margin-bottom: 1.125em;
+}
+
+.subscription-option.selected {
+  border-color: var(--purplish-blue);
+}
+
+.subscription-option input {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+}
+
+.subscription-interval {
+  --toggle-border-width: 3px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.375em;
+  padding: 1em;
+  border-radius: 0.75em;
+  background-color: var(--alabaster);
+}
+
+.subscription-interval label {
+  line-height: 100%;
+  position: relative;
+  isolation: isolate;
+  font-weight: 500;
+  font-size: 1.125em;
+}
+
+.subscription-interval label input[name='subscription-interval'] {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+}
+
+.subscription-interval
+  label
+  input[name='subscription-interval']:not(:checked)
+  ~ span {
+  color: var(--cool-gray);
+}
+
+.toggle {
+  border: 0;
+  padding: 0;
+  position: relative;
+  isolation: isolate;
+  width: calc((1.125em * 1.625) + (2 * var(--toggle-border-width)));
+  height: calc(1em + (2 * var(--toggle-border-width)));
+  border-radius: 2em;
+  background-color: var(--marine-blue);
+}
+
+.toggle .knob {
+  all: unset;
+  pointer-events: none;
+  display: inline-block;
+  background-color: #fff;
+  height: calc(100% - (var(--toggle-border-width) * 2));
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  position: absolute;
+  top: var(--toggle-border-width);
+  left: var(--toggle-border-width);
+  transition: transform 0.1s ease-in-out;
+}
+
+.toggle.toggled .knob {
+  transform: translateX(calc(62.5% + (var(--toggle-border-width) / 1)));
 }
 
 .footer {
@@ -239,8 +338,7 @@ main {
     align-items: stretch;
     justify-content: flex-start;
     gap: 1.75em;
-    padding-block: 2.625em;
-    padding-inline: 2em 6em;
+    padding: 2.625em 2em;
     border-radius: 0.625em;
   }
 
@@ -263,6 +361,7 @@ main {
     align-items: flex-start;
     justify-content: center;
     gap: 0.5em;
+    margin-right: 4em;
   }
 
   .step__description__heading {
@@ -287,26 +386,26 @@ main {
     margin-bottom: 1.375em;
   }
 
-  [class^='page-'] .field-wrapper {
+  .field-wrapper {
     font-size: 1em;
   }
 
-  [class^='page-'] .field-wrapper label {
+  .field-wrapper label {
     font-size: 0.875em;
     line-height: 2;
   }
 
-  [class^='page-'] .field-wrapper input {
+  .field-wrapper input {
     font-size: 1em;
   }
 
   [class^='page-'],
   .footer {
-    border-radius: unset;
     background-color: unset;
   }
 
   [class^='page-'] {
+    border-radius: unset;
     box-shadow: unset;
     margin: unset;
     padding: 2.75em 0 0;
@@ -323,5 +422,4 @@ main {
 *,
 *::after {
   /* outline: 1px solid red; */
-  user-select: none;
 }

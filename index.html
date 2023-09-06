@@ -61,13 +61,7 @@
     <main>
       <nav class="navbar">
         <label class="step" for="step-1">
-          <input
-            type="radio"
-            name="step-picker"
-            id="step-1"
-            value="step 1"
-            checked
-          />
+          <input type="radio" name="step-picker" id="step-1" value="step 1" />
           <span class="step__label">1</span>
           <div class="step__description">
             <span class="step__description__heading">STEP&nbsp;1</span>
@@ -75,7 +69,13 @@
           </div>
         </label>
         <label class="step" for="step-2">
-          <input type="radio" name="step-picker" id="step-2" value="step 2" />
+          <input
+            type="radio"
+            name="step-picker"
+            id="step-2"
+            value="step 2"
+            checked
+          />
           <span class="step__label">2</span>
           <div class="step__description">
             <span class="step__description__heading">STEP&nbsp;2</span>
@@ -100,7 +100,7 @@
         </label>
       </nav>
       <section class="wrapper">
-        <div class="page-1">
+        <div class="page-1" hidden>
           <header>
             <h1 class="step-title">Personal info</h1>
             <p class="step-desc">
@@ -135,16 +135,22 @@
             />
           </div>
         </div>
-        <div class="page-2" hidden>
+        <div class="page-2">
           <header>
-            <h1 class="step-2__header__title">Select your plan</h1>
-            <p class="step-2__header__description">
+            <h1 class="step-title">Select your plan</h1>
+            <p class="step-desc">
               You have the option of monthly or yearly billing.
             </p>
           </header>
-          <div>
+          <div class="subscriptions-container">
             <label class="subscription-option" for="arcade">
-              <input type="radio" name="subscription-option" id="arcade" />
+              <input
+                type="radio"
+                name="subscription-option"
+                id="arcade"
+                value="arcade"
+                checked
+              />
               <img src="./assets/images/icon-arcade.svg" alt="Arcade Icon" />
               <div>
                 <h3>Arcade</h3>
@@ -152,7 +158,12 @@
               </div>
             </label>
             <label class="subscription-option" for="advanced">
-              <input type="radio" name="subscription-option" id="advanced" />
+              <input
+                type="radio"
+                name="subscription-option"
+                id="advanced"
+                value="advanced"
+              />
               <img
                 src="./assets/images/icon-advanced.svg"
                 alt="Advanced Icon"
@@ -163,7 +174,12 @@
               </div>
             </label>
             <label class="subscription-option" for="pro">
-              <input type="radio" name="subscription-option" id="pro" />
+              <input
+                type="radio"
+                name="subscription-option"
+                id="pro"
+                value="pro"
+              />
               <img src="./assets/images/icon-pro.svg" alt="Pro Icon" />
               <div>
                 <h3>Pro</h3>
@@ -171,16 +187,33 @@
               </div>
             </label>
           </div>
-          <div class="subscription-mode">
-            <h4>Monthly</h4>
-            <span class="switch">
+          <div class="subscription-interval">
+            <label for="monthly-interval">
               <input
-                type="checkbox"
-                name="subscription-mode"
-                id="subscription-mode"
+                type="radio"
+                name="subscription-interval"
+                value="monthly"
+                id="monthly-interval"
+                checked
               />
-            </span>
-            <h4>Yearly</h4>
+              <span>Monthly</span>
+            </label>
+            <button
+              type="button"
+              aria-label="toggle subscription interval"
+              class="toggle"
+            >
+              <i class="knob"></i>
+            </button>
+            <label for="yearly-interval">
+              <input
+                type="radio"
+                name="subscription-interval"
+                id="yearly-interval"
+                value="yearly"
+              />
+              <span>Yearly</span>
+            </label>
           </div>
         </div>
         <div class="page-3" hidden>
@@ -236,8 +269,8 @@
             <p>Double-check everything looks OK before confirming.</p>
           </header>
           <div>
-            <ul class="invoice">
-              <li class="default">
+            <div class="invoice">
+              <div class="default">
                 <div>
                   <p class="subscription-info">
                     <span class="sub-mode">Arcade</span>
@@ -246,15 +279,15 @@
                   <button type="button">Change</button>
                 </div>
                 <p class="subscription-price">&dollar;<span></span>/mo</p>
-              </li>
+              </div>
               <hr />
-              <li class="add-ons">
-                <div hidden>
+              <ul class="add-ons">
+                <li hidden>
                   <p class="add-on__title"></p>
                   <p class="add-on__price">&plus;&dollar;<span></span>/mo</p>
-                </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
             <div>
               <p>Total&nbsp;(per&nbsp;<span class="interval">month</span>)</p>
               <p>&plus;&dollar;<span>12</span>/mo</p>
@@ -278,7 +311,7 @@
           </div>
         </div>
         <div class="footer">
-          <input type="button" value="go back" hidden disabled />
+          <input type="button" value="go back" />
           <input type="button" value="next step" disabled />
         </div>
       </section>
