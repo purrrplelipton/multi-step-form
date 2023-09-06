@@ -100,20 +100,25 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const subOption = document.querySelectorAll('.subscription-option');
-  // const arcade = subOption[0]?.querySelector('');
-  // const advanced = subOption[1]?.querySelector('');
-  // const pro = subOption[2]?.querySelector('');
-
-  subOption.forEach(function (option) {
-    const radio = option.querySelector('input[type="radio"]');
-    if (radio && radio.checked) return option.classList.add('selected');
-    option.classList.remove('selected');
-  });
+  // const arcade = subOption[0].querySelector('');
+  // const advanced = subOption[1].querySelector('');
+  // const pro = subOption[2].querySelector('');
 
   const subIntervalWrapper = document.querySelector('.subscription-interval');
-  const monthlyToggle = subIntervalWrapper?.querySelector('#monthly-interval');
-  const intervalToggle = subIntervalWrapper?.querySelector('button.toggle');
-  const yearlyToggle = subIntervalWrapper?.querySelector('#yearly-interval');
+  const monthlyToggle = subIntervalWrapper.querySelector('#monthly-interval');
+  const intervalToggle = subIntervalWrapper.querySelector('button.toggle');
+  const yearlyToggle = subIntervalWrapper.querySelector('#yearly-interval');
+
+  subIntervalWrapper.addEventListener(
+    'change',
+    function ({ target: { value } }) {
+      if (value === 'monthly') {
+        intervalToggle.classList.remove('toggled');
+        return;
+      }
+      intervalToggle.classList.add('toggled');
+    },
+  );
 
   intervalToggle.addEventListener('click', function ({ target }) {
     target.classList.toggle('toggled');

@@ -9,6 +9,12 @@
       sizes="32x32"
       href="./assets/images/favicon-32x32.png"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
     <title>Multi-step form | Frontend Mentor</title>
     <style>
@@ -22,7 +28,7 @@
 
       body {
         line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
       }
 
       img,
@@ -151,10 +157,17 @@
                 value="arcade"
                 checked
               />
+              <i class="indicator"></i>
               <img src="./assets/images/icon-arcade.svg" alt="Arcade Icon" />
               <div>
                 <h3>Arcade</h3>
-                <p>&dollar;9/mo</p>
+                <p>
+                  $<span class="monthly-price">9</span
+                  ><span class="yearly-price" hidden>90</span
+                  ><span class="monthly-suffix">/mo</span
+                  ><span class="yearly-suffix" hidden>/yr</span>
+                </p>
+                <span class="yearly-promo" hidden>2 months free</span>
               </div>
             </label>
             <label class="subscription-option" for="advanced">
@@ -164,13 +177,20 @@
                 id="advanced"
                 value="advanced"
               />
+              <i class="indicator"></i>
               <img
                 src="./assets/images/icon-advanced.svg"
                 alt="Advanced Icon"
               />
               <div>
                 <h3>Advanced</h3>
-                <p>&dollar;12/mo</p>
+                <p>
+                  $<span class="monthly-price">12</span
+                  ><span class="yearly-price" hidden>120</span
+                  ><span class="monthly-suffix">/mo</span
+                  ><span class="yearly-suffix" hidden>/yr</span>
+                </p>
+                <span class="yearly-promo" hidden>2 months free</span>
               </div>
             </label>
             <label class="subscription-option" for="pro">
@@ -180,10 +200,17 @@
                 id="pro"
                 value="pro"
               />
+              <i class="indicator"></i>
               <img src="./assets/images/icon-pro.svg" alt="Pro Icon" />
               <div>
                 <h3>Pro</h3>
-                <p>&dollar;15/mo</p>
+                <p>
+                  $<span class="monthly-price">15</span
+                  ><span class="yearly-price" hidden>150</span
+                  ><span class="monthly-suffix">/mo</span
+                  ><span class="yearly-suffix" hidden>/yr</span>
+                </p>
+                <span class="yearly-promo" hidden>2 months free</span>
               </div>
             </label>
           </div>
@@ -233,7 +260,7 @@
                 <h2>Online service</h2>
                 <p>Access to multiplayer games</p>
               </div>
-              <span class="add-on__price">&dollar;1/mo</span>
+              <span class="add-on__price">$1/mo</span>
             </label>
             <label for="larger-storage">
               <input
@@ -246,7 +273,7 @@
                 <h2>Larger storage</h2>
                 <p>Extra 1TB of cloud save</p>
               </div>
-              <span class="add-on__price">&dollar;2/mo</span>
+              <span class="add-on__price">$2/mo</span>
             </label>
             <label for="customizable-profile">
               <input
@@ -259,7 +286,7 @@
                 <h2>Customizable Profile</h2>
                 <p>Custom theme on your profile</p>
               </div>
-              <span class="add-on__price">&dollar;2/mo</span>
+              <span class="add-on__price">$2/mo</span>
             </label>
           </div>
         </div>
@@ -278,19 +305,19 @@
                   </p>
                   <button type="button">Change</button>
                 </div>
-                <p class="subscription-price">&dollar;<span></span>/mo</p>
+                <p class="subscription-price">$<span></span>/mo</p>
               </div>
               <hr />
               <ul class="add-ons">
                 <li hidden>
                   <p class="add-on__title"></p>
-                  <p class="add-on__price">&plus;&dollar;<span></span>/mo</p>
+                  <p class="add-on__price">&plus;$<span></span>/mo</p>
                 </li>
               </ul>
             </div>
             <div>
               <p>Total&nbsp;(per&nbsp;<span class="interval">month</span>)</p>
-              <p>&plus;&dollar;<span>12</span>/mo</p>
+              <p>&plus;$<span>12</span>/mo</p>
             </div>
           </div>
         </div>
