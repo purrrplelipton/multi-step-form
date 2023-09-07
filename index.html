@@ -67,7 +67,13 @@
     <main>
       <nav class="navbar">
         <label class="step" for="step-1">
-          <input type="radio" name="step-picker" id="step-1" value="step 1" />
+          <input
+            type="radio"
+            name="step-picker"
+            id="step-1"
+            value="step 1"
+            checked
+          />
           <span class="step__label">1</span>
           <div class="step__description">
             <span class="step__description__heading">STEP&nbsp;1</span>
@@ -75,13 +81,7 @@
           </div>
         </label>
         <label class="step" for="step-2">
-          <input
-            type="radio"
-            name="step-picker"
-            id="step-2"
-            value="step 2"
-            checked
-          />
+          <input type="radio" name="step-picker" id="step-2" value="step 2" />
           <span class="step__label">2</span>
           <div class="step__description">
             <span class="step__description__heading">STEP&nbsp;2</span>
@@ -106,7 +106,7 @@
         </label>
       </nav>
       <section class="wrapper">
-        <div class="page-1" hidden>
+        <div class="page-1">
           <header>
             <h1 class="step-title">Personal info</h1>
             <p class="step-desc">
@@ -122,26 +122,26 @@
               autocomplete="off"
             />
           </div>
-          <div class="field-wrapper email-address">
-            <label for="email-address">Email&nbsp;Address</label>
+          <div class="field-wrapper email">
+            <label for="email">Email&nbsp;Address</label>
             <input
               type="text"
-              id="email-address"
+              id="email"
               placeholder="immanueltoby@gmail.com"
               autocomplete="off"
             />
           </div>
-          <div class="field-wrapper phone-number">
-            <label for="phone-number">Phone&nbsp;Number</label>
+          <div class="field-wrapper phone">
+            <label for="phone">Phone&nbsp;Number</label>
             <input
               type="text"
-              id="phone-number"
+              id="phone"
               placeholder="0808 782 3890"
               autocomplete="off"
             />
           </div>
         </div>
-        <div class="page-2">
+        <div class="page-2" hidden>
           <header>
             <h1 class="step-title">Select your plan</h1>
             <p class="step-desc">
@@ -154,7 +154,7 @@
                 type="radio"
                 name="subscription-option"
                 id="arcade"
-                value="arcade"
+                value="monthly-arcade"
                 checked
               />
               <i class="indicator"></i>
@@ -162,10 +162,8 @@
               <div>
                 <h3>Arcade</h3>
                 <p>
-                  $<span class="monthly-price">9</span
-                  ><span class="yearly-price" hidden>90</span
-                  ><span class="monthly-suffix">/mo</span
-                  ><span class="yearly-suffix" hidden>/yr</span>
+                  $<span class="monthly-price">9/mo</span
+                  ><span class="yearly-price" hidden>90/yr</span>
                 </p>
                 <span class="yearly-promo" hidden>2 months free</span>
               </div>
@@ -175,7 +173,7 @@
                 type="radio"
                 name="subscription-option"
                 id="advanced"
-                value="advanced"
+                value="monthly-advanced"
               />
               <i class="indicator"></i>
               <img
@@ -185,10 +183,8 @@
               <div>
                 <h3>Advanced</h3>
                 <p>
-                  $<span class="monthly-price">12</span
-                  ><span class="yearly-price" hidden>120</span
-                  ><span class="monthly-suffix">/mo</span
-                  ><span class="yearly-suffix" hidden>/yr</span>
+                  $<span class="monthly-price">12/mo</span
+                  ><span class="yearly-price" hidden>120/yr</span>
                 </p>
                 <span class="yearly-promo" hidden>2 months free</span>
               </div>
@@ -198,17 +194,15 @@
                 type="radio"
                 name="subscription-option"
                 id="pro"
-                value="pro"
+                value="monthly-pro"
               />
               <i class="indicator"></i>
               <img src="./assets/images/icon-pro.svg" alt="Pro Icon" />
               <div>
                 <h3>Pro</h3>
                 <p>
-                  $<span class="monthly-price">15</span
-                  ><span class="yearly-price" hidden>150</span
-                  ><span class="monthly-suffix">/mo</span
-                  ><span class="yearly-suffix" hidden>/yr</span>
+                  $<span class="monthly-price">15/mo</span
+                  ><span class="yearly-price" hidden>150/yr</span>
                 </p>
                 <span class="yearly-promo" hidden>2 months free</span>
               </div>
@@ -321,7 +315,7 @@
             </div>
           </div>
         </div>
-        <div class="page-5" hidden>
+        <!-- <div class="page-5" hidden>
           <header>
             <img
               src="./assets/images/icon-thank-you.svg"
@@ -336,7 +330,7 @@
               email us at support@loremgaming.com.
             </p>
           </div>
-        </div>
+        </div> -->
         <div class="footer">
           <input type="button" value="go back" />
           <input type="button" value="next step" disabled />

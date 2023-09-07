@@ -1,4 +1,4 @@
-const { log: l } = console;
+const { log } = console;
 
 document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.querySelector('nav.navbar');
@@ -7,15 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const nameFieldWrapper = document.querySelector('.field-wrapper.name');
   const nameField = nameFieldWrapper.querySelector('input#name');
   const nameRegExp = new RegExp(/^[A-Za-z]{2,}(?:[-\s][A-Za-z]+)*$/);
-  const emailFieldWrapper = document.querySelector(
-    '.field-wrapper.email-address',
-  );
-  const emailField = emailFieldWrapper.querySelector('input#email-address');
+  const emailFieldWrapper = document.querySelector('.field-wrapper.email');
+  const emailField = emailFieldWrapper.querySelector('input#email');
   const emailRegExp = new RegExp(/^[\w\.-]+@[\w\.-]+\.\w+$/);
-  const numberFieldWrapper = document.querySelector(
-    '.field-wrapper.phone-number',
-  );
-  const numberField = numberFieldWrapper.querySelector('input#phone-number');
+  const numberFieldWrapper = document.querySelector('.field-wrapper.phone');
+  const numberField = numberFieldWrapper.querySelector('input#phone');
   const phoneNumberRegExp = new RegExp(/^\d{11}$/);
   const goBkBtn = document.querySelector('input[value="go back"]');
   const nextBtn = document.querySelector('input[value="next step"]');
@@ -95,14 +91,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100);
   });
 
-  nextBtn.addEventListener('click', function (e) {
-    if (!validateFields()) return e.preventDefault();
+  nextBtn.addEventListener('click', function (_e) {
+    const hiddenStates = [...step].map((page) => page.hidden);
   });
 
-  const subOption = document.querySelectorAll('.subscription-option');
-  // const arcade = subOption[0].querySelector('');
-  // const advanced = subOption[1].querySelector('');
-  // const pro = subOption[2].querySelector('');
+  const monthlyPrice = document.querySelectorAll(
+    '.subscription-option .monthly-price',
+  );
+  const yearlyPrice = document.querySelectorAll(
+    '.subscription-option .yearly-price',
+  );
+  const promoText = document.querySelectorAll(
+    '.subscription-option .yearly-promo',
+  );
 
   const subIntervalWrapper = document.querySelector('.subscription-interval');
   const monthlyToggle = subIntervalWrapper.querySelector('#monthly-interval');
@@ -114,9 +115,19 @@ document.addEventListener('DOMContentLoaded', function () {
     function ({ target: { value } }) {
       if (value === 'monthly') {
         intervalToggle.classList.remove('toggled');
+        promoText.forEach(function (text, i) {
+          text.hidden = true;
+          yearlyPrice[i].hidden = true;
+          monthlyPrice[i].hidden = false;
+        });
         return;
       }
       intervalToggle.classList.add('toggled');
+      promoText.forEach(function (text, i) {
+        text.hidden = false;
+        yearlyPrice[i].hidden = false;
+        monthlyPrice[i].hidden = true;
+      });
     },
   );
 
@@ -125,9 +136,19 @@ document.addEventListener('DOMContentLoaded', function () {
     if (target.classList.contains('toggled')) {
       monthlyToggle.checked = false;
       yearlyToggle.checked = true;
+      promoText.forEach(function (text, i) {
+        text.hidden = false;
+        yearlyPrice[i].hidden = false;
+        monthlyPrice[i].hidden = true;
+      });
       return;
     }
     monthlyToggle.checked = true;
     yearlyToggle.checked = false;
+    promoText.forEach(function (text, i) {
+      text.hidden = true;
+      yearlyPrice[i].hidden = true;
+      monthlyPrice[i].hidden = false;
+    });
   });
 });
