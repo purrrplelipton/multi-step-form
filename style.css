@@ -1,3 +1,24 @@
+@font-face {
+  src: url(./assets/fonts/Ubuntu-Bold.ttf) format('truetype');
+  font-family: 'Ubuntu';
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  src: url(./assets/fonts/Ubuntu-Medium.ttf) format('truetype');
+  font-family: 'Ubuntu';
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  src: url(./assets/fonts/Ubuntu-Regular.ttf) format('truetype');
+  font-family: 'Ubuntu';
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --marine-blue: hsl(213, 96%, 18%);
   --purplish-blue: hsl(243, 100%, 62%);
@@ -148,7 +169,8 @@ main {
   line-height: 1.1;
 }
 
-.page-2 {
+.page-2,
+.page-3 {
   padding: 1.5em;
 }
 
@@ -201,7 +223,7 @@ main {
   position: absolute;
   inset: 0;
   z-index: -1;
-  border: 1px solid #00000011;
+  border: 1px solid var(--light-gray);
   border-radius: 0.75em;
 }
 
@@ -274,6 +296,104 @@ main {
   transform: translateX(calc(62.5% + (var(--toggle-border-width) / 1)));
 }
 
+.add-ons label {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875em 1.125em;
+  line-height: 1;
+  position: relative;
+  isolation: isolate;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+.add-ons label:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+.add-ons label:last-child {
+  margin-bottom: 0.5em;
+}
+
+.add-ons label input[type='checkbox'] {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+}
+
+.add-ons label i.indicator {
+  all: unset;
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid var(--light-gray);
+}
+
+.add-ons div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: inherit;
+}
+
+.add-ons label span.checkbox {
+  position: relative;
+  font-size: 1.125rem;
+  width: 1em;
+  height: 1em;
+  margin-right: 1em;
+  border-radius: 4px;
+  border: 1px solid var(--light-gray);
+  color: #00000000;
+  transition: color 0.1s ease-in-out;
+}
+
+.add-ons label span.checkbox::before,
+.add-ons label span.checkbox::after {
+  position: absolute;
+  font-size: 1.125rem;
+  width: 1em;
+  height: 1em;
+  margin-right: 1em;
+  border-radius: 4px;
+  border: 1px solid var(--light-gray);
+  background-color: currentColor;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.add-ons label input[type='checkbox']:checked ~ i.indicator {
+  border-color: var(--purplish-blue);
+  background-color: var(--magnolia);
+}
+
+.add-ons label input[type='checkbox']:checked ~ span.checkbox {
+  color: #fff;
+  background-color: var(--purplish-blue);
+  border-color: var(--purplish-blue);
+}
+
+.add-ons label ul.add-on__deets {
+  list-style-type: none;
+  font-size: 0.9125em;
+}
+
+.add-ons label ul.add-on__deets li.add-on__deets__desc {
+  font-size: 0.8em;
+  margin-top: 0.375em;
+  line-height: 1;
+  color: var(--cool-gray);
+}
+
+.add-ons label .add-on__price {
+  font-size: 0.625em;
+  color: var(--purplish-blue);
+}
+
 .footer {
   margin: auto 0 0;
   display: flex;
@@ -303,12 +423,12 @@ main {
   opacity: 0.5;
 }
 
-.footer input[value='go back']:not(:disabled):active,
-.footer input[value='go back']:not(:disabled):hover {
+.footer input:first-child:not(:disabled):active,
+.footer input:first-child:not(:disabled):hover {
   color: var(--marine-blue);
 }
 
-.footer input[value='next step'] {
+.footer input:last-child {
   border-radius: 4px;
   display: inline-block;
   margin: 0 0 0 auto;
@@ -331,7 +451,7 @@ main {
     background-color: #fff;
     border-radius: 0.75em;
     padding: 0.75em;
-    box-shadow: 0 1em 1em #00000011;
+    box-shadow: 0 1em 1em var(--cool-gray);
   }
 
   .navbar {

@@ -149,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const stepID = currentStep.getAttribute('id').replace('step-', '');
 
       if (validateStep(1)) {
+        nextBtn.value = +stepID === 3 ? 'confirm' : 'next step';
         step.forEach((page, i) => {
           page.hidden = !(i === +stepID - 2);
           radio[i].checked = i === +stepID - 2;
@@ -170,6 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const stepID = currentStep.getAttribute('id').replace('step-', '');
 
       if (validateStep(1)) {
+        target.value = +stepID === 3 ? 'confirm' : 'next step';
         step.forEach((page, i) => {
           page.hidden = !(i === +stepID);
           radio[i].checked = i === +stepID;

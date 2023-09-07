@@ -9,12 +9,6 @@
       sizes="32x32"
       href="./assets/images/favicon-32x32.png"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="./style.css" />
     <title>Multi-step form | Frontend Mentor</title>
     <style>
@@ -239,55 +233,86 @@
         </div>
         <div class="page-3" hidden>
           <header>
-            <h1>Pick add-ons</h1>
-            <p>Add-ons help enhance your gaming experience.</p>
+            <h1 class="step-title">Pick add-ons</h1>
+            <p class="step-desc">
+              Add-ons help enhance your gaming experience.
+            </p>
           </header>
-          <div>
+          <div class="add-ons">
             <label for="online-service">
-              <input
-                type="checkbox"
-                name="online-service"
-                id="online-service"
-              />
-              <span class="checkbox"></span>
-              <div class="add-on__description">
-                <h2>Online service</h2>
-                <p>Access to multiplayer games</p>
+              <div>
+                <input
+                  type="checkbox"
+                  name="online-service"
+                  id="online-service"
+                  value="online service"
+                  checked
+                />
+                <i class="indicator"></i>
+                <span class="checkbox"></span>
+                <ul class="add-on__deets">
+                  <li>Online service</li>
+                  <li class="add-on__deets__desc">
+                    Access to multiplayer games
+                  </li>
+                </ul>
               </div>
-              <span class="add-on__price">$1/mo</span>
+              <p class="add-on__price">
+                &plus;$<span class="monthly-price">1/mo</span
+                ><span class="monthly-price" hidden>10/yr</span>
+              </p>
             </label>
             <label for="larger-storage">
-              <input
-                type="checkbox"
-                name="larger-storage"
-                id="larger-storage"
-              />
-              <span class="checkbox"></span>
-              <div class="add-on__description">
-                <h2>Larger storage</h2>
-                <p>Extra 1TB of cloud save</p>
+              <div>
+                <input
+                  type="checkbox"
+                  name="larger-storage"
+                  id="larger-storage"
+                  value="larger storage"
+                  checked
+                />
+                <i class="indicator"></i>
+                <span class="checkbox"></span>
+                <ul class="add-on__deets">
+                  <li>Larger storage</li>
+                  <li class="add-on__deets__desc">Extra 1TB of cloud save</li>
+                </ul>
               </div>
-              <span class="add-on__price">$2/mo</span>
+              <p class="add-on__price">
+                &plus;$<span class="monthly-price">2/mo</span
+                ><span class="monthly-price" hidden>20/yr</span>
+              </p>
             </label>
             <label for="customizable-profile">
-              <input
-                type="checkbox"
-                name="customizable-profile"
-                id="customizable-profile"
-              />
-              <span class="checkbox"></span>
-              <div class="add-on__description">
-                <h2>Customizable Profile</h2>
-                <p>Custom theme on your profile</p>
+              <div>
+                <input
+                  type="checkbox"
+                  name="customizable-profile"
+                  id="customizable-profile"
+                  value="customizable profile"
+                />
+                <i class="indicator"></i>
+                <span class="checkbox"></span>
+                <ul class="add-on__deets">
+                  <li>Customizable Profile</li>
+                  <li class="add-on__deets__desc">
+                    Custom theme on your profile
+                  </li>
+                </ul>
               </div>
-              <span class="add-on__price">$2/mo</span>
+              <p class="add-on__price">
+                &plus;$<span class="monthly-price">2/mo</span
+                ><span class="monthly-price" hidden>20/yr</span>
+              </p>
             </label>
           </div>
         </div>
         <div class="page-4" hidden>
           <header>
-            <h1>Finishing up</h1>
-            <p>Double-check everything looks OK before confirming.</p>
+            <h1 class="step-title">Finishing up</h1>
+            <p class="step-desc">
+              Double-check everything looks OK before confirming.
+            </p>
           </header>
           <div>
             <div class="invoice">
