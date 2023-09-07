@@ -163,7 +163,7 @@ main {
 .subscription-option {
   display: flex;
   flex-flow: row nowrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: 1em;
   padding: 1.125em;
@@ -178,6 +178,22 @@ main {
   inset: 0;
   z-index: -1;
   opacity: 0;
+}
+
+.subscription-option ul.sub-deets {
+  list-style-type: none;
+}
+
+.subscription-option ul.sub-deets li.sub-price {
+  color: var(--cool-gray);
+  font-size: 0.875em;
+  line-height: 100%;
+}
+
+.subscription-option ul.sub-deets li.discount {
+  font-size: 0.75em;
+  margin-top: 0.5em;
+  line-height: 1;
 }
 
 .subscription-option i.indicator {

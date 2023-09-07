@@ -71,7 +71,7 @@
             type="radio"
             name="step-picker"
             id="step-1"
-            value="step 1"
+            value="page-1"
             checked
           />
           <span class="step__label">1</span>
@@ -81,7 +81,7 @@
           </div>
         </label>
         <label class="step" for="step-2">
-          <input type="radio" name="step-picker" id="step-2" value="step 2" />
+          <input type="radio" name="step-picker" id="step-2" value="page-2" />
           <span class="step__label">2</span>
           <div class="step__description">
             <span class="step__description__heading">STEP&nbsp;2</span>
@@ -89,7 +89,7 @@
           </div>
         </label>
         <label class="step" for="step-3">
-          <input type="radio" name="step-picker" id="step-3" value="step 3" />
+          <input type="radio" name="step-picker" id="step-3" value="page-3" />
           <span class="step__label">3</span>
           <div class="step__description">
             <span class="step__description__heading">STEP&nbsp;3</span>
@@ -97,7 +97,7 @@
           </div>
         </label>
         <label class="step" for="step-4">
-          <input type="radio" name="step-picker" id="step-4" value="step 4" />
+          <input type="radio" name="step-picker" id="step-4" value="page-4" />
           <span class="step__label">4</span>
           <div class="step__description">
             <span class="step__description__heading">STEP&nbsp;4</span>
@@ -159,14 +159,14 @@
               />
               <i class="indicator"></i>
               <img src="./assets/images/icon-arcade.svg" alt="Arcade Icon" />
-              <div>
-                <h3>Arcade</h3>
-                <p>
+              <ul class="sub-deets">
+                <li class="sub-name">Arcade</li>
+                <li class="sub-price">
                   $<span class="monthly-price">9/mo</span
                   ><span class="yearly-price" hidden>90/yr</span>
-                </p>
-                <span class="yearly-promo" hidden>2 months free</span>
-              </div>
+                </li>
+                <li class="discount" hidden>2 months free</li>
+              </ul>
             </label>
             <label class="subscription-option" for="advanced">
               <input
@@ -180,14 +180,14 @@
                 src="./assets/images/icon-advanced.svg"
                 alt="Advanced Icon"
               />
-              <div>
-                <h3>Advanced</h3>
-                <p>
+              <ul class="sub-deets">
+                <li class="sub-name">Advanced</li>
+                <li class="sub-price">
                   $<span class="monthly-price">12/mo</span
                   ><span class="yearly-price" hidden>120/yr</span>
-                </p>
-                <span class="yearly-promo" hidden>2 months free</span>
-              </div>
+                </li>
+                <li class="discount" hidden>2 months free</li>
+              </ul>
             </label>
             <label class="subscription-option" for="pro">
               <input
@@ -198,14 +198,14 @@
               />
               <i class="indicator"></i>
               <img src="./assets/images/icon-pro.svg" alt="Pro Icon" />
-              <div>
-                <h3>Pro</h3>
-                <p>
+              <ul class="sub-deets">
+                <li class="sub-name">Pro</li>
+                <li class="sub-price">
                   $<span class="monthly-price">15/mo</span
                   ><span class="yearly-price" hidden>150/yr</span>
-                </p>
-                <span class="yearly-promo" hidden>2 months free</span>
-              </div>
+                </li>
+                <li class="discount" hidden>2 months free</li>
+              </ul>
             </label>
           </div>
           <div class="subscription-interval">
@@ -314,25 +314,25 @@
               <p>&plus;$<span>12</span>/mo</p>
             </div>
           </div>
-        </div>
-        <!-- <div class="page-5" hidden>
-          <header>
-            <img
-              src="./assets/images/icon-thank-you.svg"
-              alt="Thank You Icon"
-            />
-            <h1>Thank you!</h1>
-          </header>
-          <div>
-            <p>
-              Thanks for confirming your subscription! We hope you have fun
-              using our platform. If you ever need support, please feel free to
-              email us at support@loremgaming.com.
-            </p>
+          <div class="thanks-page" hidden>
+            <header>
+              <img
+                src="./assets/images/icon-thank-you.svg"
+                alt="Thank You Icon"
+              />
+              <h1>Thank you!</h1>
+            </header>
+            <div>
+              <p>
+                Thanks for confirming your subscription! We hope you have fun
+                using our platform. If you ever need support, please feel free
+                to email us at support@loremgaming.com.
+              </p>
+            </div>
           </div>
-        </div> -->
+        </div>
         <div class="footer">
-          <input type="button" value="go back" />
+          <input type="button" value="go back" disabled hidden />
           <input type="button" value="next step" disabled />
         </div>
       </section>

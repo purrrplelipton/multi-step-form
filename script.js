@@ -16,35 +16,84 @@ document.addEventListener('DOMContentLoaded', function () {
   const goBkBtn = document.querySelector('input[value="go back"]');
   const nextBtn = document.querySelector('input[value="next step"]');
 
-  const validateFields = () =>
-    nameField.value.trim() &&
-    nameRegExp.test(nameField.value) &&
-    emailField.value.trim() &&
-    emailRegExp.test(emailField.value) &&
-    numberField.value.trim() &&
-    phoneNumberRegExp.test(numberField.value);
+  function validateStep(step) {
+    switch (step) {
+      case 1:
+        return (
+          nameField.value.trim() &&
+          nameRegExp.test(nameField.value) &&
+          emailField.value.trim() &&
+          emailRegExp.test(emailField.value) &&
+          numberField.value.trim() &&
+          phoneNumberRegExp.test(numberField.value)
+        );
 
-  radio[0].addEventListener('change', function () {
-    step.forEach((page) => (page.hidden = page === step[0] ? false : true));
-    goBkBtn.hidden = true;
-    goBkBtn.disabled = true;
-  });
-
-  radio[1].addEventListener('change', function () {
-    if (!validateFields()) {
-      radio.forEach(
-        (step) => (step.checked = step === radio[0] ? true : false),
-      );
-      return;
+      default:
+        return false;
     }
-    goBkBtn.hidden = false;
-    goBkBtn.disabled = false;
-    step.forEach((page) => (page.hidden = page === step[1] ? false : true));
+  }
+
+  radio.forEach(function (stepRadio) {
+    stepRadio.addEventListener('change', function (evt) {
+      const { target } = evt;
+      const { value } = target;
+      switch (value) {
+        case 'page-1':
+          step.forEach(
+            (page) => (page.hidden = !page.classList.contains(value)),
+          );
+          goBkBtn.hidden = true;
+          goBkBtn.disabled = true;
+          return;
+
+        case 'page-2':
+          if (validateStep(1)) {
+            step.forEach(
+              (page) => (page.hidden = !page.classList.contains(value)),
+            );
+            goBkBtn.hidden = false;
+            goBkBtn.disabled = false;
+            return;
+          }
+          radio.forEach((rd) => (rd.checked = rd.value === 'page-1'));
+
+          return;
+
+        case 'page-3':
+          if (validateStep(1)) {
+            step.forEach(
+              (page) => (page.hidden = !page.classList.contains(value)),
+            );
+            goBkBtn.hidden = false;
+            goBkBtn.disabled = false;
+            return;
+          }
+          radio.forEach((rd) => (rd.checked = rd.value === 'page-1'));
+
+          return;
+
+        case 'page-4':
+          if (validateStep(1)) {
+            step.forEach(
+              (page) => (page.hidden = !page.classList.contains(value)),
+            );
+            goBkBtn.hidden = false;
+            goBkBtn.disabled = false;
+            return;
+          }
+          radio.forEach((rd) => (rd.checked = rd.value === 'page-1'));
+
+          return;
+
+        default:
+          return;
+      }
+    });
   });
 
   nameField.addEventListener('input', function ({ target: { value } }) {
     return setTimeout(function () {
-      nextBtn.disabled = !validateFields();
+      nextBtn.disabled = !validateStep(1);
       setTimeout(function () {
         if (value.trim() && !nameRegExp.test(value)) {
           nameFieldWrapper.setAttribute('data-message', 'Invalid name format');
@@ -58,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   emailField.addEventListener('input', function ({ target: { value } }) {
     return setTimeout(function () {
-      nextBtn.disabled = !validateFields();
+      nextBtn.disabled = !validateStep(1);
       setTimeout(function () {
         if (value.trim() && !emailRegExp.test(value)) {
           emailFieldWrapper.setAttribute(
@@ -75,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   numberField.addEventListener('input', function ({ target: { value } }) {
     return setTimeout(function () {
-      nextBtn.disabled = !validateFields();
+      nextBtn.disabled = !validateStep(1);
       setTimeout(function () {
         if (value.trim() && !phoneNumberRegExp.test(value)) {
           numberFieldWrapper.setAttribute(
@@ -91,19 +140,51 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100);
   });
 
-  nextBtn.addEventListener('click', function (_e) {
-    const hiddenStates = [...step].map((page) => page.hidden);
+  goBkBtn.addEventListener('click', function ({ target }) {
+    const currentStep = navbar.querySelector(
+      'input[type="radio"][name="step-picker"]:checked',
+    );
+
+    if (currentStep) {
+      const stepID = currentStep.getAttribute('id').replace('step-', '');
+
+      if (validateStep(1)) {
+        step.forEach((page, i) => {
+          page.hidden = !(i === +stepID - 2);
+          radio[i].checked = i === +stepID - 2;
+        });
+        if (+stepID === 2) {
+          target.disabled = true;
+          target.hidden = true;
+        }
+      }
+    }
   });
 
-  const monthlyPrice = document.querySelectorAll(
-    '.subscription-option .monthly-price',
-  );
-  const yearlyPrice = document.querySelectorAll(
-    '.subscription-option .yearly-price',
-  );
-  const promoText = document.querySelectorAll(
-    '.subscription-option .yearly-promo',
-  );
+  nextBtn.addEventListener('click', function ({ target }) {
+    const currentStep = navbar.querySelector(
+      'input[type="radio"][name="step-picker"]:checked',
+    );
+
+    if (currentStep) {
+      const stepID = currentStep.getAttribute('id').replace('step-', '');
+
+      if (validateStep(1)) {
+        step.forEach((page, i) => {
+          page.hidden = !(i === +stepID);
+          radio[i].checked = i === +stepID;
+        });
+        if (+stepID === 1) {
+          goBkBtn.disabled = false;
+          goBkBtn.hidden = false;
+        }
+      }
+    }
+  });
+
+  const monthlyPrice = document.querySelectorAll('.sub-price .monthly-price');
+  const yearlyPrice = document.querySelectorAll('.sub-price .yearly-price');
+  const promoText = document.querySelectorAll('.subscription-option .discount');
 
   const subIntervalWrapper = document.querySelector('.subscription-interval');
   const monthlyToggle = subIntervalWrapper.querySelector('#monthly-interval');
