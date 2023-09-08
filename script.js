@@ -1,3 +1,19 @@
+let form$data = {
+  user: { name: '', email: '', number: '' },
+  subscription: {
+    name: 'arcade',
+    interval: 'monthly',
+    price: function () {
+      if (this.name === 'arcade') return this.interval === 'monthly' ? 9 : 90;
+      else if (this.name === 'advanced')
+        return this.interval === 'monthly' ? 12 : 120;
+      else if (this.name === 'pro')
+        return this.interval === 'monthly' ? 15 : 150;
+      return null;
+    },
+    add$ons: [],
+  },
+};
 const { log } = console;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -103,6 +119,8 @@ document.addEventListener('DOMContentLoaded', function () {
           nameFieldWrapper.setAttribute('data-message', 'Invalid name format');
           return nameFieldWrapper.classList.add('error');
         }
+        form$data = { ...form$data, user: { ...form$data.user, name: value } };
+
         nameFieldWrapper.removeAttribute('data-message');
         return nameFieldWrapper.classList.remove('error');
       }, 400);
@@ -120,6 +138,8 @@ document.addEventListener('DOMContentLoaded', function () {
           );
           return emailFieldWrapper.classList.add('error');
         }
+        form$data = { ...form$data, user: { ...form$data.user, email: value } };
+
         emailFieldWrapper.removeAttribute('data-message');
         return emailFieldWrapper.classList.remove('error');
       }, 400);
@@ -136,10 +156,15 @@ document.addEventListener('DOMContentLoaded', function () {
             'Invalid phone number format',
           );
           numberFieldWrapper.classList.add('error');
-        } else {
-          numberFieldWrapper.removeAttribute('data-message');
-          numberFieldWrapper.classList.remove('error');
+          return;
         }
+        form$data = {
+          ...form$data,
+          user: { ...form$data.user, number: value },
+        };
+
+        numberFieldWrapper.removeAttribute('data-message');
+        numberFieldWrapper.classList.remove('error');
       }, 400);
     }, 100);
   });
@@ -192,6 +217,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const yearlyPrice = document.querySelectorAll('.sub-price .yearly-price');
   const promoText = document.querySelectorAll('.subscription-option .discount');
 
+  const subs = document.querySelector('.subscriptions-container');
+  subs.addEventListener('change', function ({ target: { value } }) {
+    form$data = {
+      ...form$data,
+      subscription: { ...form$data.subscription, name: value },
+    };
+  });
+
   const subIntervalWrapper = document.querySelector('.subscription-interval');
   const monthlyToggle = subIntervalWrapper.querySelector('#monthly-interval');
   const intervalToggle = subIntervalWrapper.querySelector('button.toggle');
@@ -208,6 +241,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function ({ target: { value } }) {
       if (value === 'monthly') {
         intervalToggle.classList.remove('toggled');
+        form$data = {
+          ...form$data,
+          subscription: { ...form$data.subscription, interval: value },
+        };
+
         promoText.forEach(function (text, i) {
           text.hidden = true;
           yearlyPrice[i].hidden = true;
@@ -220,14 +258,19 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
       intervalToggle.classList.add('toggled');
+      form$data = {
+        ...form$data,
+        subscription: { ...form$data.subscription, interval: value },
+      };
+
       promoText.forEach(function (text, i) {
         text.hidden = false;
         yearlyPrice[i].hidden = false;
         monthlyPrice[i].hidden = true;
       });
-      addOnsYearlyPrice.forEach(function (price, j) {
-        price.hidden = false;
-        addOnsMonthlyPrice[j].hidden = true;
+      addOnsMonthlyPrice.forEach(function (price, j) {
+        price.hidden = true;
+        addOnsYearlyPrice[j].hidden = false;
       });
     },
   );
@@ -235,6 +278,11 @@ document.addEventListener('DOMContentLoaded', function () {
   intervalToggle.addEventListener('click', function ({ target }) {
     target.classList.toggle('toggled');
     if (target.classList.contains('toggled')) {
+      form$data = {
+        ...form$data,
+        subscription: { ...form$data.subscription, interval: 'yearly' },
+      };
+
       monthlyToggle.checked = false;
       yearlyToggle.checked = true;
       promoText.forEach(function (text, i) {
@@ -244,6 +292,11 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       return;
     }
+    form$data = {
+      ...form$data,
+      subscription: { ...form$data.subscription, interval: 'monthly' },
+    };
+
     monthlyToggle.checked = true;
     yearlyToggle.checked = false;
     promoText.forEach(function (text, i) {
@@ -252,4 +305,18 @@ document.addEventListener('DOMContentLoaded', function () {
       monthlyPrice[i].hidden = false;
     });
   });
+
+  const chngBtn = document.querySelector(
+    '.page-4 .invoice .base .selected li input[type="button"][value="change"]#change-selection',
+  );
+
+  const selected$option = document.querySelector('.selected__option');
+  const selected$interval = document.querySelector('.selected__interval');
+  const selection$price = document.querySelector('.selection-price span');
+
+  selected$option.innerHTML = form$data.subscription.name;
+  selected$interval.innerHTML = form$data.subscription.interval;
+  selection$price.innerHTML = `${form$data.subscription.price()}/${
+    form$data.subscription.interval === 'monthly' ? 'mo' : 'yr'
+  }`;
 });
