@@ -258,8 +258,8 @@
                 </ul>
               </div>
               <p class="add-on__price">
-                &plus;$<span class="monthly-price">1/mo</span
-                ><span class="monthly-price" hidden>10/yr</span>
+                +$<span class="monthly-price">1/mo</span
+                ><span class="yearly-price" hidden>10/yr</span>
               </p>
             </label>
             <label for="larger-storage">
@@ -279,8 +279,8 @@
                 </ul>
               </div>
               <p class="add-on__price">
-                &plus;$<span class="monthly-price">2/mo</span
-                ><span class="monthly-price" hidden>20/yr</span>
+                +$<span class="monthly-price">2/mo</span
+                ><span class="yearly-price" hidden>20/yr</span>
               </p>
             </label>
             <label for="customizable-profile">
@@ -301,8 +301,8 @@
                 </ul>
               </div>
               <p class="add-on__price">
-                &plus;$<span class="monthly-price">2/mo</span
-                ><span class="monthly-price" hidden>20/yr</span>
+                +$<span class="monthly-price">2/mo</span
+                ><span class="yearly-price" hidden>20/yr</span>
               </p>
             </label>
           </div>
@@ -316,27 +316,26 @@
           </header>
           <div>
             <div class="invoice">
-              <div class="default">
-                <div>
-                  <p class="subscription-info">
-                    <span class="sub-mode">Arcade</span>
-                    (<span class="sub-interval">Monthly</span>)
-                  </p>
-                  <button type="button">Change</button>
-                </div>
-                <p class="subscription-price">$<span></span>/mo</p>
+              <div class="base">
+                <ul>
+                  <li class="selected">
+                    <span class="selected__option">Arcade</span>&nbsp;(<span
+                      class="selected__interval"
+                      >Monthly</span
+                    >)
+                  </li>
+                  <li>
+                    <input type="button" value="change" id="change-selection" />
+                  </li>
+                </ul>
+                <p class="selection-price">$<span>9/mo</span></p>
               </div>
               <hr />
-              <ul class="add-ons">
-                <li hidden>
-                  <p class="add-on__title"></p>
-                  <p class="add-on__price">&plus;$<span></span>/mo</p>
-                </li>
-              </ul>
+              <ul class="add-ons"></ul>
             </div>
-            <div>
+            <div class="total">
               <p>Total&nbsp;(per&nbsp;<span class="interval">month</span>)</p>
-              <p>&plus;$<span>12</span>/mo</p>
+              <p>+$<span class="price">9/mo</span></p>
             </div>
           </div>
           <div class="thanks-page" hidden>

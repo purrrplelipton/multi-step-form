@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
           );
           goBkBtn.hidden = true;
           goBkBtn.disabled = true;
+          nextBtn.value = 'next step';
           return;
 
         case 'page-2':
@@ -53,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
             );
             goBkBtn.hidden = false;
             goBkBtn.disabled = false;
+            nextBtn.value = 'next step';
             return;
           }
           radio.forEach((rd) => (rd.checked = rd.value === 'page-1'));
@@ -66,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
             );
             goBkBtn.hidden = false;
             goBkBtn.disabled = false;
+            nextBtn.value = 'next step';
             return;
           }
           radio.forEach((rd) => (rd.checked = rd.value === 'page-1'));
@@ -79,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
             );
             goBkBtn.hidden = false;
             goBkBtn.disabled = false;
+            nextBtn.value = 'Confirm';
             return;
           }
           radio.forEach((rd) => (rd.checked = rd.value === 'page-1'));
@@ -192,6 +196,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const monthlyToggle = subIntervalWrapper.querySelector('#monthly-interval');
   const intervalToggle = subIntervalWrapper.querySelector('button.toggle');
   const yearlyToggle = subIntervalWrapper.querySelector('#yearly-interval');
+  const addOnsMonthlyPrice = document.querySelectorAll(
+    '.add-on__price .monthly-price',
+  );
+  const addOnsYearlyPrice = document.querySelectorAll(
+    '.add-on__price .yearly-price',
+  );
 
   subIntervalWrapper.addEventListener(
     'change',
@@ -203,6 +213,10 @@ document.addEventListener('DOMContentLoaded', function () {
           yearlyPrice[i].hidden = true;
           monthlyPrice[i].hidden = false;
         });
+        addOnsMonthlyPrice.forEach(function (price, j) {
+          price.hidden = false;
+          addOnsYearlyPrice[j].hidden = true;
+        });
         return;
       }
       intervalToggle.classList.add('toggled');
@@ -210,6 +224,10 @@ document.addEventListener('DOMContentLoaded', function () {
         text.hidden = false;
         yearlyPrice[i].hidden = false;
         monthlyPrice[i].hidden = true;
+      });
+      addOnsYearlyPrice.forEach(function (price, j) {
+        price.hidden = false;
+        addOnsMonthlyPrice[j].hidden = true;
       });
     },
   );

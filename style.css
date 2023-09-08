@@ -170,7 +170,8 @@ main {
 }
 
 .page-2,
-.page-3 {
+.page-3,
+.page-4 {
   padding: 1.5em;
 }
 
@@ -353,17 +354,12 @@ main {
   transition: color 0.1s ease-in-out;
 }
 
-.add-ons label span.checkbox::before,
-.add-ons label span.checkbox::after {
+.add-ons label span.checkbox::before {
   position: absolute;
-  font-size: 1.125rem;
-  width: 1em;
-  height: 1em;
-  margin-right: 1em;
-  border-radius: 4px;
-  border: 1px solid var(--light-gray);
-  background-color: currentColor;
-  transition: background-color 0.1s ease-in-out;
+  inset: 0 0 25% 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-ons label input[type='checkbox']:checked ~ i.indicator {
@@ -375,6 +371,10 @@ main {
   color: #fff;
   background-color: var(--purplish-blue);
   border-color: var(--purplish-blue);
+}
+
+.add-ons label input[type='checkbox']:checked ~ span.checkbox::before {
+  content: url(./assets/images/icon-checkmark.svg);
 }
 
 .add-ons label ul.add-on__deets {
@@ -391,6 +391,70 @@ main {
 
 .add-ons label .add-on__price {
   font-size: 0.625em;
+  color: var(--purplish-blue);
+}
+
+.invoice {
+  padding: 1.25em 1.125em;
+  color: var(--cool-gray);
+  background-color: var(--alabaster);
+  border-radius: 0.75em;
+}
+
+.invoice hr {
+  all: unset;
+  display: block;
+  margin: 0.625em 0;
+  width: 100%;
+  border-top: 1px solid var(--light-gray);
+}
+
+.base {
+  line-height: 1;
+  padding: 0.125em 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.base ul {
+  list-style-type: none;
+  font-size: 0.875em;
+}
+
+.base ul li.selected {
+  color: var(--marine-blue);
+  margin-top: 0.375em;
+}
+
+.base ul li input {
+  border: 0;
+  padding: 0;
+  line-height: 1.5;
+  text-transform: capitalize;
+  text-decoration: solid underline;
+  color: inherit;
+  background-color: unset;
+}
+
+.base .selection-price {
+  font-size: 0.75em;
+  color: var(--marine-blue);
+}
+
+.total {
+  font-size: 0.875em;
+  line-height: 1;
+  padding: 1.625em 1.5em 0.5em;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total p:last-child {
+  font-size: 1.125em;
   color: var(--purplish-blue);
 }
 
