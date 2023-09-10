@@ -93,6 +93,64 @@ let user = {
   },
 };
 
+function toggleElements(className, show) {
+  const elements = document.querySelectorAll(className);
+  elements?.forEach((element) => (element.hidden = !show));
+}
+
+function handleStepChange(value) {
+  if (validateStep(1)) {
+    toggleElements(".page-1", value === "page-1");
+    toggleElements(".page-2", value === "page-2");
+    toggleElements(".page-3", value === "page-3");
+    toggleElements(".page-4", value === "page-4");
+    goBackButton.hidden = value === "page-1";
+    goBackButton.disabled = goBackButton.hidden;
+    nextButton.value = value === "page-4" ? "confirm" : "next step";
+    if (value === "page-4") updateSummary();
+    return;
+  }
+  radioButtons.forEach(
+    (radioButton) => (radioButton.checked = radioButton.value === "page-1")
+  );
+}
+
+function updateSummary() {
+  selected.option.textContent = user.subscription.id;
+  selected.interval.textContent = user.subscription.interval;
+  selected.price.textContent = `${user.subscription.price()}/${
+    user.subscription.interval === "monthly" ? "mo" : "yr"
+  }`;
+  selected.addOns.innerHTML = "";
+  user.subscription.addOns.forEach((addOn) => {
+    const formattedValue = addOn.value.replace(/\W/g, "&nbsp;");
+    const addOnElement = document.createElement("li");
+    addOnElement.innerHTML = `<p class="add-on__name">${formattedValue}</p><p>+$<span class="add-on__price">${
+      user.subscription.interval === "monthly"
+        ? `${addOn.getAttribute("data-monthly-price")}/mo`
+        : `${addOn.getAttribute("data-yearly-price")}/yr`
+    }</span></p>`;
+    selected.addOns.appendChild(addOnElement);
+  });
+  total.interval.textContent = user.subscription.interval.replace(/ly$/, "");
+  function getTotal() {
+    let totalAmount = user.subscription.price();
+
+    // Calculate add-ons price
+    user.subscription.addOns.forEach((addOn) => {
+      const monthlyPrice = +addOn.getAttribute("data-monthly-price");
+      const yearlyPrice = +addOn.getAttribute("data-yearly-price");
+      totalAmount +=
+        user.subscription.interval === "monthly" ? monthlyPrice : yearlyPrice;
+    });
+
+    return totalAmount;
+  }
+  total.price.textContent = `${getTotal()}/${
+    user.subscription.interval === "monthly" ? "mo" : "yr"
+  }`;
+}
+
 function validateInput(inputField, regex) {
   const value = inputField.value.trim();
   const wrapper = inputField.parentElement;
@@ -128,85 +186,9 @@ function validateStep(step) {
 }
 
 for (let i = 0; i < radioButtons.length; i++) {
-  radioButtons[i].addEventListener("change", ({ target: { value } }) => {
-    switch (value) {
-      case "page-1":
-        for (let j = 0; j < stepPages.length; j++) {
-          stepPages[j].hidden = !stepPages[j].classList.contains(value);
-        }
-        goBackButton.hidden = true;
-        goBackButton.disabled = goBackButton.hidden;
-        nextButton.value = "next step";
-        return;
-
-      case "page-2":
-        if (validateStep(1)) {
-          for (let j = 0; j < stepPages.length; j++) {
-            stepPages[j].hidden = !stepPages[j].classList.contains(value);
-          }
-          goBackButton.hidden = false;
-          goBackButton.disabled = goBackButton.hidden;
-          nextButton.value = "next step";
-          return;
-        }
-        for (let j = 0; j < radioButtons.length; j++) {
-          radioButtons[j].checked = radioButtons[j].value === "page-1";
-        }
-
-        return;
-
-      case "page-3":
-        if (validateStep(1)) {
-          for (let j = 0; j < stepPages.length; j++) {
-            stepPages[j].hidden = !stepPages[j].classList.contains(value);
-          }
-          goBackButton.hidden = false;
-          goBackButton.disabled = goBackButton.hidden;
-          nextButton.value = "next step";
-          return;
-        }
-        for (let i = 0; i < radioButtons.length; i++) {
-          radioButtons[i].checked = radioButtons[i].value === "page-1";
-        }
-
-        return;
-
-      case "page-4":
-        if (validateStep(1)) {
-          for (let j = 0; j < stepPages.length; j++) {
-            stepPages[j].hidden = !stepPages[j].classList.contains(value);
-          }
-          goBackButton.hidden = false;
-          goBackButton.disabled = goBackButton.hidden;
-          nextButton.value = "confirm";
-          selected.option.textContent = user.subscription.id;
-          selected.interval.textContent = user.subscription.interval;
-          selected.price.textContent = `${user.subscription.price()}/${
-            user.subscription.interval === "monthly" ? "mo" : "yr"
-          }`;
-          for (let i = 0; i < user.subscription.addOns.length; i++) {
-            const value = user.subscription.addOns[i].value;
-            const formattedValue = value.replace(/\W/g, "&nbsp;");
-            const addOn = document.createElement("li");
-            addOn.innerHTML = `<p class="add-on__name">${formattedValue}</p><p>+$<span class="add-on__price"></span></p>`;
-            selected.addOns.appendChild(addOn);
-          }
-          total.interval.textContent = user.subscription.interval.replace(
-            /ly$/,
-            ""
-          );
-          return;
-        }
-        for (let i = 0; i < radioButtons.length; i++) {
-          radioButtons[i].checked = radioButtons[i].value === "page-1";
-        }
-
-        return;
-
-      default:
-        return;
-    }
-  });
+  radioButtons[i].addEventListener("change", ({ target: { value } }) =>
+    handleStepChange(value)
+  );
 }
 
 nameInput.field.addEventListener("input", ({ target: { value } }) => {
@@ -262,24 +244,7 @@ nextButton.addEventListener("click", ({ target }) => {
       radioButtons[i].checked = i === +currentStep;
     }
     target.value = +currentStep === 3 ? "confirm" : "next step";
-    if (+currentStep === 3) {
-      selected.option.textContent = user.subscription.id;
-      selected.interval.textContent = user.subscription.interval;
-      selected.price.textContent = `${user.subscription.price()}/${
-        user.subscription.interval === "monthly" ? "mo" : "yr"
-      }`;
-      for (let i = 0; i < user.subscription.addOns.length; i++) {
-        const value = user.subscription.addOns[i].value;
-        const formattedValue = value.replace(/\W/g, "&nbsp;");
-        const addOn = document.createElement("li");
-        addOn.innerHTML = `<p class="add-on__name">${formattedValue}</p><p>+$<span class="add-on__price"></span></p>`;
-        selected.addOns.appendChild(addOn);
-      }
-      total.interval.textContent = user.subscription.interval.replace(
-        /ly$/,
-        ""
-      );
-    }
+    updateSummary();
     if (+currentStep === 1) {
       goBackButton.disabled = false;
       goBackButton.hidden = goBackButton.disabled;

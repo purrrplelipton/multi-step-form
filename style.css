@@ -463,7 +463,8 @@ main {
 }
 
 .invoice .add-ons li p:last-child {
-  font-size: 1.125em;
+  font-size: 0.925em;
+  text-transform: initial;
   color: var(--marine-blue);
 }
 
