@@ -1,366 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./assets/images/favicon-32x32.png"
-    />
-    <link rel="stylesheet" href="./style.css" />
-    <title>Multi-step form | Frontend Mentor</title>
-    <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
 
-      body {
-        line-height: 1.5;
-        text-rendering: optimizeLegibility;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+  <link rel="stylesheet" href="./style.css" />
+  <title>Multi-step form | Frontend Mentor</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      user-select: none;
+    }
 
-      img,
-      picture,
-      video,
-      canvas,
-      svg {
-        display: block;
-        max-width: 100%;
-      }
+    body {
+      line-height: 1.5;
+      text-rendering: optimizeLegibility;
+    }
 
-      input,
-      button,
-      textarea,
-      select {
-        font: inherit;
-      }
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
 
-      p,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        overflow-wrap: break-word;
-      }
+    input,
+    button,
+    textarea,
+    select {
+      font: inherit;
+    }
 
-      #root,
-      #__next {
-        isolation: isolate;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <nav class="navbar">
-        <label class="step" for="step-1">
-          <input
-            type="radio"
-            name="step-picker"
-            id="step-1"
-            value="page-1"
-            checked
-          />
-          <span class="step__label">1</span>
-          <div class="step__description">
-            <span class="step__description__heading">STEP&nbsp;1</span>
-            <span class="step__description__title">Your info</span>
-          </div>
-        </label>
-        <label class="step" for="step-2">
-          <input type="radio" name="step-picker" id="step-2" value="page-2" />
-          <span class="step__label">2</span>
-          <div class="step__description">
-            <span class="step__description__heading">STEP&nbsp;2</span>
-            <span class="step__description__title">Select plan</span>
-          </div>
-        </label>
-        <label class="step" for="step-3">
-          <input type="radio" name="step-picker" id="step-3" value="page-3" />
-          <span class="step__label">3</span>
-          <div class="step__description">
-            <span class="step__description__heading">STEP&nbsp;3</span>
-            <span class="step__description__title">Add-ons</span>
-          </div>
-        </label>
-        <label class="step" for="step-4">
-          <input type="radio" name="step-picker" id="step-4" value="page-4" />
-          <span class="step__label">4</span>
-          <div class="step__description">
-            <span class="step__description__heading">STEP&nbsp;4</span>
-            <span class="step__description__title">Summary</span>
-          </div>
-        </label>
-      </nav>
-      <section class="wrapper">
-        <div class="page-1">
-          <header>
-            <h1 class="step-title">Personal info</h1>
-            <p class="step-desc">
-              Please provide your name, email address, and phone number.
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      overflow-wrap: break-word;
+    }
+
+    #root,
+    #__next {
+      isolation: isolate;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <nav class="navbar">
+      <label class="step" for="step-1">
+        <input type="radio" name="step-picker" id="step-1" value="page-1" checked />
+        <span class="step__label">1</span>
+        <div class="step__description">
+          <span class="step__description__heading">STEP&nbsp;1</span>
+          <span class="step__description__title">Your info</span>
+        </div>
+      </label>
+      <label class="step" for="step-2">
+        <input type="radio" name="step-picker" id="step-2" value="page-2" />
+        <span class="step__label">2</span>
+        <div class="step__description">
+          <span class="step__description__heading">STEP&nbsp;2</span>
+          <span class="step__description__title">Select plan</span>
+        </div>
+      </label>
+      <label class="step" for="step-3">
+        <input type="radio" name="step-picker" id="step-3" value="page-3" />
+        <span class="step__label">3</span>
+        <div class="step__description">
+          <span class="step__description__heading">STEP&nbsp;3</span>
+          <span class="step__description__title">Add-ons</span>
+        </div>
+      </label>
+      <label class="step" for="step-4">
+        <input type="radio" name="step-picker" id="step-4" value="page-4" />
+        <span class="step__label">4</span>
+        <div class="step__description">
+          <span class="step__description__heading">STEP&nbsp;4</span>
+          <span class="step__description__title">Summary</span>
+        </div>
+      </label>
+    </nav>
+    <section class="wrapper">
+      <div class="page-1">
+        <header>
+          <h1 class="step-title">Personal info</h1>
+          <p class="step-desc">
+            Please provide your name, email address, and phone number.
+          </p>
+        </header>
+        <div class="field-wrapper name">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Emmanuel Adeyeye" autocomplete="off" />
+        </div>
+        <div class="field-wrapper email">
+          <label for="email">Email&nbsp;Address</label>
+          <input type="text" id="email" placeholder="immanueltoby@gmail.com" autocomplete="off" />
+        </div>
+        <div class="field-wrapper phone">
+          <label for="phone">Phone&nbsp;Number</label>
+          <input type="text" id="phone" placeholder="0808 782 3890" autocomplete="off" />
+        </div>
+      </div>
+      <div class="page-2" hidden>
+        <header>
+          <h1 class="step-title">Select your plan</h1>
+          <p class="step-desc">
+            You have the option of monthly or yearly billing.
+          </p>
+        </header>
+        <div class="subscriptions-container">
+          <label class="subscription-option" for="arcade">
+            <input type="radio" name="subscription-option" id="arcade" value="arcade" checked />
+            <i class="indicator"></i>
+            <img src="./assets/images/icon-arcade.svg" alt="Arcade Icon" />
+            <ul class="sub-deets">
+              <li class="sub-name">Arcade</li>
+              <li class="sub-price"> $<span class="monthly-price">9/mo</span><span class="yearly-price"
+                  hidden>90/yr</span> </li>
+              <li class="discount" hidden>2 months free</li>
+            </ul>
+          </label>
+          <label class="subscription-option" for="advanced">
+            <input type="radio" name="subscription-option" id="advanced" value="advanced" />
+            <i class="indicator"></i>
+            <img src="./assets/images/icon-advanced.svg" alt="Advanced Icon" />
+            <ul class="sub-deets">
+              <li class="sub-name">Advanced</li>
+              <li class="sub-price"> $<span class="monthly-price">12/mo</span><span class="yearly-price"
+                  hidden>120/yr</span> </li>
+              <li class="discount" hidden>2 months free</li>
+            </ul>
+          </label>
+          <label class="subscription-option" for="pro">
+            <input type="radio" name="subscription-option" id="pro" value="pro" />
+            <i class="indicator"></i>
+            <img src="./assets/images/icon-pro.svg" alt="Pro Icon" />
+            <ul class="sub-deets">
+              <li class="sub-name">Pro</li>
+              <li class="sub-price">$<span class="monthly-price">15/mo</span><span class="yearly-price" hidden>150/yr</span></li>
+              <li class="discount" hidden>2 months free</li>
+            </ul>
+          </label>
+        </div>
+        <div class="subscription-interval">
+          <label for="monthly-interval">
+            <input type="radio" name="subscription-interval" value="monthly" id="monthly-interval" checked />
+            <span>Monthly</span>
+          </label>
+          <button type="button" aria-label="toggle subscription interval" class="toggle">
+            <i class="knob"></i>
+          </button>
+          <label for="yearly-interval">
+            <input type="radio" name="subscription-interval" id="yearly-interval" value="yearly" />
+            <span>Yearly</span>
+          </label>
+        </div>
+      </div>
+      <div class="page-3" hidden>
+        <header>
+          <h1 class="step-title">Pick add-ons</h1>
+          <p class="step-desc">
+            Add-ons help enhance your gaming experience.
+          </p>
+        </header>
+        <div class="add-ons">
+          <label for="online-service">
+            <div>
+              <input type="checkbox" name="online-service" id="online-service" value="online-service" checked />
+              <i class="indicator"></i>
+              <span class="checkbox"></span>
+              <ul class="add-on__deets">
+                <li>Online service</li>
+                <li class="add-on__deets__desc">Access to multiplayer games</li>
+              </ul>
+            </div>
+            <p class="add-on__price">+$<span class="monthly-price">1/mo</span><span class="yearly-price"
+                hidden>10/yr</span></p>
+          </label>
+          <label for="larger-storage">
+            <div> <input type="checkbox" name="larger-storage" id="larger-storage" value="larger-storage" checked /> <i
+                class="indicator"></i> <span class="checkbox"></span>
+              <ul class="add-on__deets">
+                <li>Larger storage</li>
+                <li class="add-on__deets__desc">Extra 1TB of cloud save</li>
+              </ul>
+            </div>
+            <p class="add-on__price"> +$<span class="monthly-price">2/mo</span><span class="yearly-price"
+                hidden>20/yr</span>
             </p>
-          </header>
-          <div class="field-wrapper name">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Emmanuel Adeyeye"
-              autocomplete="off"
-            />
+          </label>
+          <label for="customizable-profile">
+            <div> <input type="checkbox" name="customizable-profile" id="customizable-profile"
+                value="customizable-profile" /> <i class="indicator"></i> <span class="checkbox"></span>
+              <ul class="add-on__deets">
+                <li>Customizable Profile</li>
+                <li class="add-on__deets__desc"> Custom theme on your profile </li>
+              </ul>
+            </div>
+            <p class="add-on__price"> +$<span class="monthly-price">2/mo</span><span class="yearly-price"
+                hidden>20/yr</span>
+            </p>
+          </label>
+        </div>
+      </div>
+      <div class="page-4" hidden>
+        <header>
+          <h1 class="step-title">Finishing up</h1>
+          <p class="step-desc">Double-check everything looks OK before confirming.</p>
+        </header>
+        <div>
+          <div class="invoice">
+            <div class="base">
+              <ul>
+                <li class="selected"><span class="selected__option"></span>&nbsp;(<span class="selected__interval"></span>)</li>
+                <li><input type="button" value="change" id="change-selection" /></li>
+              </ul>
+              <p class="selection-price">$<span></span></p>
+            </div>
+            <hr />
+            <ul class="add-ons"></ul>
           </div>
-          <div class="field-wrapper email">
-            <label for="email">Email&nbsp;Address</label>
-            <input
-              type="text"
-              id="email"
-              placeholder="immanueltoby@gmail.com"
-              autocomplete="off"
-            />
-          </div>
-          <div class="field-wrapper phone">
-            <label for="phone">Phone&nbsp;Number</label>
-            <input
-              type="text"
-              id="phone"
-              placeholder="0808 782 3890"
-              autocomplete="off"
-            />
+          <div class="total">
+            <p>Total&nbsp;(per&nbsp;<span class="interval"></span>)</p>
+            <p>+$<span class="price"></span></p>
           </div>
         </div>
-        <div class="page-2" hidden>
+        <div class="thank-page" hidden>
           <header>
-            <h1 class="step-title">Select your plan</h1>
-            <p class="step-desc">
-              You have the option of monthly or yearly billing.
-            </p>
-          </header>
-          <div class="subscriptions-container">
-            <label class="subscription-option" for="arcade">
-              <input
-                type="radio"
-                name="subscription-option"
-                id="arcade"
-                value="arcade"
-                checked
-              />
-              <i class="indicator"></i>
-              <img src="./assets/images/icon-arcade.svg" alt="Arcade Icon" />
-              <ul class="sub-deets">
-                <li class="sub-name">Arcade</li>
-                <li class="sub-price">
-                  $<span class="monthly-price">9/mo</span
-                  ><span class="yearly-price" hidden>90/yr</span>
-                </li>
-                <li class="discount" hidden>2 months free</li>
-              </ul>
-            </label>
-            <label class="subscription-option" for="advanced">
-              <input
-                type="radio"
-                name="subscription-option"
-                id="advanced"
-                value="advanced"
-              />
-              <i class="indicator"></i>
-              <img
-                src="./assets/images/icon-advanced.svg"
-                alt="Advanced Icon"
-              />
-              <ul class="sub-deets">
-                <li class="sub-name">Advanced</li>
-                <li class="sub-price">
-                  $<span class="monthly-price">12/mo</span
-                  ><span class="yearly-price" hidden>120/yr</span>
-                </li>
-                <li class="discount" hidden>2 months free</li>
-              </ul>
-            </label>
-            <label class="subscription-option" for="pro">
-              <input
-                type="radio"
-                name="subscription-option"
-                id="pro"
-                value="pro"
-              />
-              <i class="indicator"></i>
-              <img src="./assets/images/icon-pro.svg" alt="Pro Icon" />
-              <ul class="sub-deets">
-                <li class="sub-name">Pro</li>
-                <li class="sub-price">
-                  $<span class="monthly-price">15/mo</span
-                  ><span class="yearly-price" hidden>150/yr</span>
-                </li>
-                <li class="discount" hidden>2 months free</li>
-              </ul>
-            </label>
-          </div>
-          <div class="subscription-interval">
-            <label for="monthly-interval">
-              <input
-                type="radio"
-                name="subscription-interval"
-                value="monthly"
-                id="monthly-interval"
-                checked
-              />
-              <span>Monthly</span>
-            </label>
-            <button
-              type="button"
-              aria-label="toggle subscription interval"
-              class="toggle"
-            >
-              <i class="knob"></i>
-            </button>
-            <label for="yearly-interval">
-              <input
-                type="radio"
-                name="subscription-interval"
-                id="yearly-interval"
-                value="yearly"
-              />
-              <span>Yearly</span>
-            </label>
-          </div>
-        </div>
-        <div class="page-3" hidden>
-          <header>
-            <h1 class="step-title">Pick add-ons</h1>
-            <p class="step-desc">
-              Add-ons help enhance your gaming experience.
-            </p>
-          </header>
-          <div class="add-ons">
-            <label for="online-service">
-              <div>
-                <input
-                  type="checkbox"
-                  name="online-service"
-                  id="online-service"
-                  value="online-service"
-                  checked
-                />
-                <i class="indicator"></i>
-                <span class="checkbox"></span>
-                <ul class="add-on__deets">
-                  <li>Online service</li>
-                  <li class="add-on__deets__desc">
-                    Access to multiplayer games
-                  </li>
-                </ul>
-              </div>
-              <p class="add-on__price">
-                +$<span class="monthly-price">1/mo</span
-                ><span class="yearly-price" hidden>10/yr</span>
-              </p>
-            </label>
-            <label for="larger-storage">
-              <div>
-                <input
-                  type="checkbox"
-                  name="larger-storage"
-                  id="larger-storage"
-                  value="larger-storage"
-                  checked
-                />
-                <i class="indicator"></i>
-                <span class="checkbox"></span>
-                <ul class="add-on__deets">
-                  <li>Larger storage</li>
-                  <li class="add-on__deets__desc">Extra 1TB of cloud save</li>
-                </ul>
-              </div>
-              <p class="add-on__price">
-                +$<span class="monthly-price">2/mo</span
-                ><span class="yearly-price" hidden>20/yr</span>
-              </p>
-            </label>
-            <label for="customizable-profile">
-              <div>
-                <input
-                  type="checkbox"
-                  name="customizable-profile"
-                  id="customizable-profile"
-                  value="customizable-profile"
-                />
-                <i class="indicator"></i>
-                <span class="checkbox"></span>
-                <ul class="add-on__deets">
-                  <li>Customizable Profile</li>
-                  <li class="add-on__deets__desc">
-                    Custom theme on your profile
-                  </li>
-                </ul>
-              </div>
-              <p class="add-on__price">
-                +$<span class="monthly-price">2/mo</span
-                ><span class="yearly-price" hidden>20/yr</span>
-              </p>
-            </label>
-          </div>
-        </div>
-        <div class="page-4" hidden>
-          <header>
-            <h1 class="step-title">Finishing up</h1>
-            <p class="step-desc">
-              Double-check everything looks OK before confirming.
-            </p>
+            <img src="./assets/images/icon-thank-you.svg" alt="Thank You Icon" />
+            <h1>Thank you!</h1>
           </header>
           <div>
-            <div class="invoice">
-              <div class="base">
-                <ul>
-                  <li class="selected">
-                    <span class="selected__option">Arcade</span>&nbsp;(<span
-                      class="selected__interval"
-                      >Monthly</span
-                    >)
-                  </li>
-                  <li>
-                    <input type="button" value="change" id="change-selection" />
-                  </li>
-                </ul>
-                <p class="selection-price">$<span>9/mo</span></p>
-              </div>
-              <hr />
-              <ul class="add-ons"></ul>
-            </div>
-            <div class="total">
-              <p>Total&nbsp;(per&nbsp;<span class="interval">month</span>)</p>
-              <p>+$<span class="price">9/mo</span></p>
-            </div>
-          </div>
-          <div class="thanks-page" hidden>
-            <header>
-              <img
-                src="./assets/images/icon-thank-you.svg"
-                alt="Thank You Icon"
-              />
-              <h1>Thank you!</h1>
-            </header>
-            <div>
-              <p>
-                Thanks for confirming your subscription! We hope you have fun
-                using our platform. If you ever need support, please feel free
-                to email us at support@loremgaming.com.
-              </p>
-            </div>
+            <p> Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need
+              support, please feel free to email us at support@loremgaming.com.
+            </p>
           </div>
         </div>
-        <div class="footer">
-          <input type="button" value="go back" disabled hidden />
-          <input type="button" value="next step" disabled />
-        </div>
-      </section>
-    </main>
-    <script src="./script.js"></script>
-  </body>
+      </div>
+      <div class="footer">
+        <input type="button" value="go back" disabled hidden />
+        <input type="button" value="next step" disabled />
+      </div>
+    </section>
+  </main>
+  <script src="./script.js"></script>
+</body>
 </html>

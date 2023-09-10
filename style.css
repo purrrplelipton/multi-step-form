@@ -133,7 +133,7 @@ main {
   color: inherit;
   display: inline-block;
   width: 100%;
-  border: 1px solid var(--cool-gray);
+  border: 1px solid var(--light-gray);
   transition: box-shadow 0.125s ease-in-out;
   outline: 1px solid transparent;
   border-radius: 4px;
@@ -426,9 +426,10 @@ main {
 .base ul li.selected {
   color: var(--marine-blue);
   margin-top: 0.375em;
+  text-transform: capitalize;
 }
 
-.base ul li input {
+.base ul li [type="button"] {
   border: 0;
   padding: 0;
   line-height: 1.5;
@@ -439,7 +440,30 @@ main {
 }
 
 .base .selection-price {
-  font-size: 0.75em;
+  font-size: 0.875em;
+  font-weight: 700;
+  color: var(--marine-blue);
+}
+
+.invoice .add-ons {
+  list-style-type: none;
+  text-transform: capitalize;
+}
+
+.invoice .add-ons li {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875em;
+}
+
+.invoice .add-ons li:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+.invoice .add-ons li p:last-child {
+  font-size: 1.125em;
   color: var(--marine-blue);
 }
 
@@ -515,7 +539,7 @@ main {
     background-color: #fff;
     border-radius: 0.75em;
     padding: 0.75em;
-    box-shadow: 0 1em 1em var(--cool-gray);
+    box-shadow: 0 1em 1em #00000011;
   }
 
   .navbar {
@@ -615,10 +639,4 @@ main {
     font-size: 1em;
     padding: 0.625em 0;
   }
-}
-
-*::before,
-*,
-*::after {
-  /* outline: 1px solid red; */
 }
