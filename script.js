@@ -94,6 +94,8 @@ let user = {
 };
 
 function toggleElements(className, show) {
+  document.querySelector(".thanks-page").hidden = true;
+  document.querySelector(".footer").classList.remove("hidden");
   const elements = document.querySelectorAll(className);
   elements?.forEach((element) => (element.hidden = !show));
 }
@@ -215,7 +217,7 @@ numberInput.field.addEventListener("input", ({ target: { value } }) => {
   }, 500);
 });
 
-goBackButton.addEventListener("click", ({ target }) => {
+goBackButton.addEventListener("click", () => {
   const currentStep = navbar
     ?.querySelector("input:checked")
     ?.value?.replace("page-", "");
@@ -227,8 +229,8 @@ goBackButton.addEventListener("click", ({ target }) => {
     }
     if (+currentStep === 4) nextButton.value = "next step";
     if (+currentStep === 2) {
-      target.disabled = true;
-      target.hidden = target.disabled;
+      goBackButton.disabled = true;
+      goBackButton.hidden = goBackButton.disabled;
     }
   }
 });
@@ -238,18 +240,24 @@ nextButton.addEventListener("click", ({ target }) => {
     ?.querySelector("input:checked")
     ?.value?.replace("page-", "");
 
-  if (validateStep(1)) {
-    for (let i = 0; i < stepPages.length; i++) {
-      stepPages[i].hidden = !(i === +currentStep);
-      radioButtons[i].checked = i === +currentStep;
+  if (+currentStep < 4) {
+    if (validateStep(1)) {
+      for (let i = 0; i < stepPages.length; i++) {
+        stepPages[i].hidden = !(i === +currentStep);
+        radioButtons[i].checked = i === +currentStep;
+      }
+      nextButton.value = +currentStep === 3 ? "confirm" : "next step";
+      updateSummary();
+      if (+currentStep === 1) {
+        goBackButton.disabled = false;
+        goBackButton.hidden = goBackButton.disabled;
+      }
     }
-    target.value = +currentStep === 3 ? "confirm" : "next step";
-    updateSummary();
-    if (+currentStep === 1) {
-      goBackButton.disabled = false;
-      goBackButton.hidden = goBackButton.disabled;
-    }
+    return;
   }
+  stepPages.forEach((page) => (page.hidden = true));
+  document.querySelector(".thanks-page").hidden = false;
+  document.querySelector(".footer").classList.add("hidden");
 });
 
 changeSelectionButton.addEventListener("click", () => {

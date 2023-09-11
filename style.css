@@ -429,7 +429,7 @@ main {
   text-transform: capitalize;
 }
 
-.base ul li [type="button"] {
+.base ul li input {
   border: 0;
   padding: 0;
   line-height: 1.5;
@@ -437,6 +437,11 @@ main {
   text-decoration: solid underline;
   color: inherit;
   background-color: unset;
+}
+
+.base ul li input:active,
+.base ul li input:hover{
+  color: var(--purplish-blue);
 }
 
 .base .selection-price {
@@ -524,6 +529,43 @@ main {
   padding: 0.75em 0.875em;
   color: #fff;
   background-color: var(--marine-blue);
+}
+
+.footer input:last-child[value='confirm'] {
+  background-color: var(--purplish-blue);
+}
+
+.footer input:last-child[value='confirm']:active,
+.footer input:last-child[value='confirm']:hover {
+  opacity: 0.9;
+}
+
+.footer.hidden {
+  all: unset !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+}
+
+.thanks-page {
+  margin: 0 1em;
+  padding: 4em 1.25em 5em;
+  border-radius: 0.625em;
+  color: var(--cool-gray);
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 1em 1em #00000011;
+}
+
+.thanks-page header img {
+  margin-block: 1em;
+  margin-inline: auto;
+  max-width: 64px;
+}
+
+.thanks-page header h1 {
+  color: var(--marine-blue);
+  margin-block: 0.375em;
 }
 
 @media only screen and (min-width: 1024px) {
